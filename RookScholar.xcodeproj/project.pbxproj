@@ -16,6 +16,7 @@
 		222B0E9729ACA1D700905615 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B0E9629ACA1D700905615 /* Article.swift */; };
 		222B0E9929ACA34D00905615 /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B0E9829ACA34D00905615 /* ArticleTableViewController.swift */; };
 		222B0E9B29ACF37100905615 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B0E9A29ACF37100905615 /* ArticleTableViewCell.swift */; };
+		22F1C0B629AE3F6F00213ED1 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1C0B529AE3F6F00213ED1 /* ArticleDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		222B0E9629ACA1D700905615 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		222B0E9829ACA34D00905615 /* ArticleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
 		222B0E9A29ACF37100905615 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		22F1C0B529AE3F6F00213ED1 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				222B0E8629AC99E600905615 /* ViewController.swift */,
 				222B0E9A29ACF37100905615 /* ArticleTableViewCell.swift */,
 				222B0E8829AC99E600905615 /* Main.storyboard */,
+				22F1C0B529AE3F6F00213ED1 /* ArticleDetailViewController.swift */,
 				222B0E9829ACA34D00905615 /* ArticleTableViewController.swift */,
 				222B0E9629ACA1D700905615 /* Article.swift */,
 				222B0E8B29AC99E700905615 /* Assets.xcassets */,
@@ -150,6 +153,7 @@
 				222B0E9929ACA34D00905615 /* ArticleTableViewController.swift in Sources */,
 				222B0E9729ACA1D700905615 /* Article.swift in Sources */,
 				222B0E8729AC99E600905615 /* ViewController.swift in Sources */,
+				22F1C0B629AE3F6F00213ED1 /* ArticleDetailViewController.swift in Sources */,
 				222B0E8329AC99E600905615 /* AppDelegate.swift in Sources */,
 				222B0E9B29ACF37100905615 /* ArticleTableViewCell.swift in Sources */,
 				222B0E8529AC99E600905615 /* SceneDelegate.swift in Sources */,

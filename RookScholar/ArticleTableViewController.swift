@@ -9,16 +9,20 @@ import UIKit
 
 class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
+    
+   
     @IBOutlet weak var articleTable: UITableView!
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.setHidesBackButton(true, animated: true)
         articleTable.dataSource = self
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailView") as? ArticleDetailViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articleData.count
     }
