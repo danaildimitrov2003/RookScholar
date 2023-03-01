@@ -14,7 +14,7 @@ struct Article{
     let content: String
     let image: UIImage
 }
-
+//test
 
 
 enum Articles{
