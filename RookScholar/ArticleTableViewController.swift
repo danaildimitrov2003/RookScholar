@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ArticleTableViewController: UIViewController, UITableViewDataSource{
+class ArticleTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     
    
@@ -25,8 +25,10 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
     }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Articles.articleData.count
     }

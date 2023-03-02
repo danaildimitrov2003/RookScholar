@@ -17,6 +17,11 @@ class ArticleDetailViewController: UIViewController{
     @IBOutlet weak var articleAuthor: UILabel?
     @IBOutlet weak var articleImage: UIImageView?
     
+    
+    
+    
+    
+
     override func viewDidLoad() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/YY"
@@ -26,6 +31,7 @@ class ArticleDetailViewController: UIViewController{
         articleDate?.text = dateFormatter.string(from: article.date)
         articleAuthor?.text = article.author
         articleImage?.image = article.image
+                
     }
     
     required init?(coder: NSCoder) {
