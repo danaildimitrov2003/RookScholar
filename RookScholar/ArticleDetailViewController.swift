@@ -23,6 +23,7 @@ class ArticleDetailViewController: UIViewController{
     
 
     override func viewDidLoad() {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/YY"
         super.viewDidLoad()
@@ -31,7 +32,8 @@ class ArticleDetailViewController: UIViewController{
         articleDate?.text = dateFormatter.string(from: article.date)
         articleAuthor?.text = article.author
         articleImage?.image = article.image
-                
+        self.navigationController?.navigationBar.backItem?.backButtonTitle = " "
+
     }
     
     required init?(coder: NSCoder) {

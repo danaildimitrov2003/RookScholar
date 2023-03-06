@@ -69,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="-248" y="4"/>
         </scene>
-        <!--Article Table View Controller-->
+        <!--RookScholar-->
         <scene sceneID="2BE-MX-kcU">
             <objects>
                 <tableViewController storyboardIdentifier="ArticleTable" id="0Zb-Ds-fB0" customClass="ArticleTableViewController" customModule="RookScholar" customModuleProvider="target" sceneMemberID="viewController">
@@ -125,7 +125,7 @@
                             <outlet property="delegate" destination="0Zb-Ds-fB0" id="fWT-lW-nmr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Bdz-Uw-kzF"/>
+                    <navigationItem key="navigationItem" title="RookScholar" id="Bdz-Uw-kzF"/>
                     <connections>
                         <outlet property="articleTable" destination="Su6-74-NQS" id="evS-Gp-Vcy"/>
                     </connections>
@@ -143,10 +143,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" id="gmg-67-BYU">
-                                <rect key="frame" x="203" y="179" width="167" height="658"/>
+                                <rect key="frame" x="203" y="179" width="148" height="658"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -194,7 +194,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mAX-Sp-RUy">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mAX-Sp-RUy">
                                 <rect key="frame" x="47" y="191" width="140" height="214"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="MqC-F8-rFm"/>
@@ -214,7 +214,16 @@
                             <constraint firstItem="mAX-Sp-RUy" firstAttribute="top" secondItem="J3P-ra-6VV" secondAttribute="bottom" constant="20" id="rrm-Ih-cUl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5QY-nr-vbS"/>
+                    <navigationItem key="navigationItem" title="RookScholar" id="5QY-nr-vbS">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="list.bullet" catalog="system" style="plain" id="vEf-kH-SId">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="rFU-LU-uDM">
+                                <rect key="frame" x="-37" y="-17" width="87" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="list.bullet" catalog="system"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="articleAuthor" destination="H1H-Dx-bCe" id="eav-a1-8S1"/>
                         <outlet property="articleContent" destination="gmg-67-BYU" id="HfH-Lj-kGW"/>
@@ -229,6 +238,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="list.bullet" catalog="system" width="128" height="87"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
