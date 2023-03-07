@@ -33,7 +33,7 @@ class ArticleDetailViewController: UIViewController{
         articleAuthor?.text = article.author
         articleImage?.image = article.image
         self.navigationController?.navigationBar.backItem?.backButtonTitle = " "
-
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .done, target: self, action: nil)
     }
     
     required init?(coder: NSCoder) {
