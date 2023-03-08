@@ -125,7 +125,13 @@
                             <outlet property="delegate" destination="0Zb-Ds-fB0" id="fWT-lW-nmr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="RookScholar" id="Bdz-Uw-kzF"/>
+                    <navigationItem key="navigationItem" title="RookScholar" id="Bdz-Uw-kzF">
+                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="zi5-fc-NEE">
+                            <connections>
+                                <action selector="didTabMenuButton" destination="0Zb-Ds-fB0" id="C3U-8S-b5X"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="articleTable" destination="Su6-74-NQS" id="evS-Gp-Vcy"/>
                     </connections>
@@ -215,13 +221,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="RookScholar" id="5QY-nr-vbS">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="list.bullet" catalog="system" style="plain" id="vEf-kH-SId">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="rFU-LU-uDM">
-                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="line.horizontal.3" catalog="system"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="aJr-LJ-WPU">
+                            <connections>
+                                <action selector="didTabMenuButton" destination="5Hq-FG-Id6" id="4Qh-aB-d34"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -238,8 +241,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="line.horizontal.3" catalog="system" width="128" height="65"/>
-        <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

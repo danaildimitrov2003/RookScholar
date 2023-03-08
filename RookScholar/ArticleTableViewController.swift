@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import SideMenu
 
-class ArticleTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class ArticleTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate{
+    
+    
+    
+    private var sideMenu: SideMenuNavigationController?
+    
     
     
    
@@ -22,6 +28,12 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: true)
         articleTable.dataSource = self
+        let menu = MenuController(with: ["Articles"])
+        menu.delegate = self
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        sideMenu?.leftSide = false
+        SideMenuManager.default.rightMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -43,6 +55,17 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource, UITab
       return cell
     }
     
+    @IBAction func didTabMenuButton(){
+        present(sideMenu!, animated: true)
+    }
+    func didSelectMenuItem(named: String) {
+        sideMenu?.dismiss(animated: true, completion: {
+            if named == "Articles"{
+                
+            }
+        })
+    }
 }
+
 
 

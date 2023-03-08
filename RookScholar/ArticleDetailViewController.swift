@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import SideMenu
 
-class ArticleDetailViewController: UIViewController{
+class ArticleDetailViewController: UIViewController, MenuControllerDelegate, DetailMenuControllerDelegate{
+    
+    
+    private var sideMenu: SideMenuNavigationController?
     
     let article: Article
     
@@ -18,8 +22,7 @@ class ArticleDetailViewController: UIViewController{
     @IBOutlet weak var articleImage: UIImageView?
     
     
-    
-    
+    private let tableController = ArticleTableViewController()
     
 
     override func viewDidLoad() {
@@ -33,7 +36,14 @@ class ArticleDetailViewController: UIViewController{
         articleAuthor?.text = article.author
         articleImage?.image = article.image
         self.navigationController?.navigationBar.backItem?.backButtonTitle = " "
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .done, target: self, action: nil)
+        
+        let menu = DetailMenuController(with: ["Articles"])
+        menu.delegate = self
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        sideMenu?.leftSide = false
+        SideMenuManager.default.rightMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -43,4 +53,20 @@ class ArticleDetailViewController: UIViewController{
         self.article = article
          super.init(coder: coder)
     }
+    @IBAction func didTabMenuButton(){
+        present(sideMenu!, animated: true)
+    }
+    func didSelectMenuItem(named: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+        sideMenu?.dismiss(animated: true, completion: {
+            if named == "Articles"{
+                
+                self.navigationController?.pushViewController(ArticleTable, animated: true)
+            }
+        })
+    }
+
+    
+    
 }
