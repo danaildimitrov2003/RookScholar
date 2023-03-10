@@ -13,28 +13,53 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate, Det
     
     private var sideMenu: SideMenuNavigationController?
     
-    let article: Article
+    var article: Article = Article(title: "", author: "", date: Date.now, content: "", image: UIImage(systemName: "\(2).square.fill")!)
     
-    @IBOutlet weak var articleTitle: UILabel?
-    @IBOutlet weak var articleContent: UITextView?
-    @IBOutlet weak var articleDate:UILabel?
-    @IBOutlet weak var articleAuthor: UILabel?
-    @IBOutlet weak var articleImage: UIImageView?
     
+    let articleTitle : UILabel = {
+        let articleTitle = UILabel()
+        articleTitle .translatesAutoresizingMaskIntoConstraints = false // enable auto-layout
+        articleTitle .textAlignment = .center // text alignment in center
+        return articleTitle
+    }()
+    let articleInfo : UILabel = {
+        let articleInfo = UILabel()
+        articleInfo .translatesAutoresizingMaskIntoConstraints = false // enable auto-layout
+        articleInfo .textAlignment = .center // text alignment in center
+        return articleInfo
+    }()
+    let articleContent : UITextView = {
+        let articleContent = UITextView()
+        articleContent .translatesAutoresizingMaskIntoConstraints = false // enable auto-layout
+        articleContent .textAlignment = .center // text alignment in center
+        return articleContent
+    }()
+    let articleImage : UIImageView = {
+        let articleImage = UIImageView()
+        articleImage .translatesAutoresizingMaskIntoConstraints = false // enable auto-layout
+        return articleImage
+    }()
+    
+        
     
     private let tableController = ArticleTableViewController()
     
 
     override func viewDidLoad() {
         
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/YY"
         super.viewDidLoad()
-        articleTitle?.text = article.title
-        articleContent?.text = article.content
-        articleDate?.text = dateFormatter.string(from: article.date)
-        articleAuthor?.text = article.author
-        articleImage?.image = article.image
+        articleTitle.text = article.title
+        articleContent.text = article.content
+        articleInfo.text = "Author: \(article.author), Date: \(dateFormatter.string(from: article.date))"
+        
+        articleImage.image = article.image
+//        articleImage?.frame = CGRect(x: 47, y: 191, width: 140, height: 214)
+//        articleContent?.frame =  CGRect(x: 47, y: 191, width: 330, height: 640)
+//        articleContent!.textContainer.exclusionPaths = [UIBezierPath(rect: articleImage!.frame)]
+        
         self.navigationController?.navigationBar.backItem?.backButtonTitle = " "
         
         let menu = DetailMenuController(with: ["Articles"])
@@ -46,13 +71,8 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate, Det
         
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("This should never be called!")
-    }
-     init?(coder: NSCoder, article: Article){
-        self.article = article
-         super.init(coder: coder)
-    }
+    
+
     @IBAction func didTabMenuButton(){
         present(sideMenu!, animated: true)
     }

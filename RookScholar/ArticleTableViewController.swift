@@ -16,16 +16,21 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource, UITab
     
     
     
-   
-    @IBSegueAction func showDetail(_ coder: NSCoder) -> ArticleDetailViewController? {
-        guard let indexPath = articleTable.indexPathForSelectedRow
-          else { fatalError("Nothing selected!") }
-        let article = Articles.articleData[indexPath.row]
-        return ArticleDetailViewController(coder: coder, article: article)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        articleTable.deselectRow(at: indexPath, animated: true)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let DetailView = storyBoard.instantiateViewController(withIdentifier: "DetailView") as! ArticleDetailViewController
+        self.navigationController?.pushViewController(DetailView, animated: true)
+        DetailView.article = Articles.articleData[indexPath.row]
+
+
+
     }
     @IBOutlet weak var articleTable: UITableView!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        articleTable.register(ArticleTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
         self.navigationItem.setHidesBackButton(true, animated: true)
         articleTable.dataSource = self
         let menu = MenuController(with: ["Articles"])
@@ -37,7 +42,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
     
     
