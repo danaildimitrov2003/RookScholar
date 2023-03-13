@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="J3P-ra-6VV">
-                                <rect key="frame" x="46.999999999999986" y="103" width="63.333333333333329" height="50"/>
+                                <rect key="frame" x="46.999999999999993" y="103" width="63.333333333333336" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="xKn-lh-mhj">
                                         <rect key="frame" x="0.0" y="0.0" width="63.333333333333336" height="50"/>
