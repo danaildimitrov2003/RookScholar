@@ -51,7 +51,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource, UITab
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YY"
+        dateFormatter.dateFormat = "dd/MM/YYYY"
         let article = Articles.articleData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
         cell.articleTitle.text = article.title
