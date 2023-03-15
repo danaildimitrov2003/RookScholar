@@ -14,7 +14,11 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
     private var sideMenu: SideMenuNavigationController?
     var article: Article = Article(title: "", author: "", date: Date.now, content: "", image: UIImage(systemName: "\(2).square.fill")!)
     
-    var scrollView = UIScrollView()
+    var scrollView : UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     let articleTitle : UILabel = {
         let articleTitle = UILabel()
         articleTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -43,29 +47,48 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
         return articleImage
     }()
     private func addLabels() {
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 20))
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
+        var constraints = [NSLayoutConstraint]()
         view.addSubview(scrollView)
+        
         scrollView.addSubview(articleTitle)
         scrollView.addSubview(articleInfo)
         scrollView.addSubview(articleContent)
         scrollView.addSubview(articleImage)
-        var constraints = [NSLayoutConstraint]()
+        
+        constraints.append(scrollView.topAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.topAnchor))
+        constraints.append(scrollView.bottomAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.bottomAnchor))
+        constraints.append(scrollView.leadingAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.leadingAnchor))
+        constraints.append(scrollView.trailingAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.trailingAnchor))
+        
+        
         constraints.append(articleTitle.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
         constraints.append(articleTitle.topAnchor.constraint(
             equalTo: scrollView.topAnchor, constant: 10))
+
+        constraints.append(articleTitle.leadingAnchor.constraint(
+            equalTo: scrollView.leadingAnchor))
+        constraints.append(articleTitle.trailingAnchor.constraint(
+            equalTo: scrollView.trailingAnchor))
+        
         
         constraints.append(articleInfo.topAnchor.constraint(
             equalTo: articleTitle.topAnchor, constant: 30))
-        constraints.append(articleInfo.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constraints.append(articleInfo.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
         constraints.append(articleInfo.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor, constant: 10))
+            equalTo: scrollView.leadingAnchor, constant: 10))
         constraints.append(articleInfo.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor, constant: -10))
+            equalTo: scrollView.trailingAnchor, constant: -10))
         
         
         constraints.append(articleContent.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80))
-        constraints.append(articleContent.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 10))
+        constraints.append(articleContent.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
+        constraints.append(articleContent.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10))
+        
+        
         constraints.append(articleContent.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -20))
         constraints.append(articleImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80))
         constraints.append(articleImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20))
@@ -101,10 +124,7 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
         SideMenuManager.default.addPanGestureToPresent(toView: view)
         
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
-    }
+
     
     
     @IBAction func didTabMenuButton(){
