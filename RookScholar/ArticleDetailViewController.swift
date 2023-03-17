@@ -46,6 +46,31 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
         articleImage.translatesAutoresizingMaskIntoConstraints = false
         return articleImage
     }()
+
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        addLabels()
+        addValues()
+        addSideMenu()
+    }
+    
+    @IBAction func didTabMenuButton() {
+        
+        present(sideMenu!, animated: true)
+    }
+    
+    func didSelectMenuItem(named: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+        sideMenu?.dismiss(animated: true, completion: {
+            if named == "Articles"{
+                
+                self.navigationController?.pushViewController(ArticleTable, animated: true)
+            }
+        })
+    }
+    
     private func addLabels() {
         var constraints = [NSLayoutConstraint]()
         view.addSubview(scrollView)
@@ -64,16 +89,14 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
         constraints.append(scrollView.trailingAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.trailingAnchor))
         
-        
         constraints.append(articleTitle.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
         constraints.append(articleTitle.topAnchor.constraint(
             equalTo: scrollView.topAnchor, constant: 10))
-
+        
         constraints.append(articleTitle.leadingAnchor.constraint(
             equalTo: scrollView.leadingAnchor))
         constraints.append(articleTitle.trailingAnchor.constraint(
             equalTo: scrollView.trailingAnchor))
-        
         
         constraints.append(articleInfo.topAnchor.constraint(
             equalTo: articleTitle.topAnchor, constant: 30))
@@ -83,64 +106,36 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
         constraints.append(articleInfo.trailingAnchor.constraint(
             equalTo: scrollView.trailingAnchor, constant: -10))
         
-        
         constraints.append(articleContent.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80))
         constraints.append(articleContent.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
         constraints.append(articleContent.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10))
-        
         
         constraints.append(articleContent.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -20))
         constraints.append(articleImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80))
         constraints.append(articleImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20))
         
-
+        
         NSLayoutConstraint.activate(constraints)
         
     }
-        
     
-    private let tableController = ArticleTableViewController()
-    
-
-    override func viewDidLoad() {
-        
-        addLabels()
+    private func addValues() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/YYYY"
-        super.viewDidLoad()
         articleTitle.text = article.title
         articleContent.text = article.content
         articleInfo.text = "Author: \(article.author), Date: \(dateFormatter.string(from: article.date))"
         articleImage.image = article.image
         articleImage.frame = CGRect(x: 10, y: 10, width: 155, height: 190)
         self.articleContent.textContainer.exclusionPaths = [UIBezierPath(rect: articleImage.frame)]
-        
-        self.navigationController?.navigationBar.backItem?.backButtonTitle = " "
+    }
+    
+    private func addSideMenu() {
         let menu = DetailMenuController(with: ["Articles"])
         menu.delegate = self
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         sideMenu?.leftSide = false
         SideMenuManager.default.rightMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
-        
     }
-
-    
-    
-    @IBAction func didTabMenuButton(){
-        present(sideMenu!, animated: true)
-    }
-    func didSelectMenuItem(named: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
-        sideMenu?.dismiss(animated: true, completion: {
-            if named == "Articles"{
-                
-                self.navigationController?.pushViewController(ArticleTable, animated: true)
-            }
-        })
-    }
-
-    
-    
 }
