@@ -12,13 +12,23 @@ class ArticleTableViewController: UIViewController{
     
     
     private var sideMenu: SideMenuNavigationController?
-    @IBOutlet weak var articleTable: UITableView!
+    
+    var articleTable : UITableView = {
+        var articleTable = UITableView()
+        articleTable.allowsSelection = true
+        articleTable.register(ArticleTableViewCell.self, forCellReuseIdentifier: ArticleTableViewCell.identifier)
+        articleTable.translatesAutoresizingMaskIntoConstraints = false
+        return articleTable
+        
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         articleTable.dataSource = self
+        articleTable.delegate = self
         self.navigationItem.setHidesBackButton(true, animated: true)
-        articleTable.register(ArticleTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
+        
         addSideMenu()
     }
     
@@ -35,12 +45,23 @@ class ArticleTableViewController: UIViewController{
     }
     
     private func addSideMenu() {
+        self.view.addSubview(articleTable)
         let menu = MenuController(with: ["Articles"])
         menu.delegate = self
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         sideMenu?.leftSide = false
         SideMenuManager.default.rightMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
+        NSLayoutConstraint.activate([articleTable.topAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.topAnchor),
+                                     articleTable.bottomAnchor.constraint(
+                                         equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                                     articleTable.leadingAnchor.constraint(
+                                         equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                                     articleTable.trailingAnchor.constraint(
+                                         equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+        
     }
 }
 
@@ -65,7 +86,7 @@ extension ArticleTableViewController: UITableViewDelegate, UITableViewDataSource
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/YYYY"
         let article = Articles.articleData[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.identifier , for: indexPath) as! ArticleTableViewCell
         cell.articleTitle.text = article.title
         cell.articleContent.text = article.content
         cell.articleDate.text = dateFormatter.string(from: article.date)

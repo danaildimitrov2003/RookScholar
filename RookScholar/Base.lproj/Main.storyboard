@@ -49,7 +49,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="continueButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ibC-7B-0cN"/>
-                                    <segue destination="0Zb-Ds-fB0" kind="show" id="Kcm-L8-F5R"/>
+                                    <segue destination="AbX-7y-gXe" kind="show" id="nsa-L2-AyA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -70,42 +70,27 @@
             <point key="canvasLocation" x="-248" y="4"/>
         </scene>
         <!--RookScholar-->
-        <scene sceneID="2BE-MX-kcU">
+        <scene sceneID="J3a-Kj-uuK">
             <objects>
-                <tableViewController storyboardIdentifier="ArticleTable" id="0Zb-Ds-fB0" customClass="ArticleTableViewController" customModule="RookScholar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Su6-74-NQS">
+                <viewController storyboardIdentifier="ArticleTable" id="AbX-7y-gXe" customClass="ArticleTableViewController" customModule="RookScholar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7RI-o3-Xmr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ru4-ja-EEF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="120" id="sXk-p1-yaq" customClass="ArticleTableViewCell" customModule="RookScholar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="120"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sXk-p1-yaq" id="DUa-ls-b01">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="0Zb-Ds-fB0" id="O8p-Jk-ag9"/>
-                            <outlet property="delegate" destination="0Zb-Ds-fB0" id="fWT-lW-nmr"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="RookScholar" id="Bdz-Uw-kzF">
-                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="zi5-fc-NEE">
+                    </view>
+                    <navigationItem key="navigationItem" title="RookScholar" id="VSE-0U-VrH">
+                        <barButtonItem key="backBarButtonItem" title="  " id="tYF-sU-flN"/>
+                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="fNW-TU-IeJ">
                             <connections>
-                                <action selector="didTabMenuButton" destination="0Zb-Ds-fB0" id="C3U-8S-b5X"/>
+                                <action selector="didTabMenuButton" destination="AbX-7y-gXe" id="V1r-JR-MMj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="articleTable" destination="Su6-74-NQS" id="evS-Gp-Vcy"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="otW-bI-pvA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fSN-AI-CnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="4"/>
+            <point key="canvasLocation" x="694" y="4"/>
         </scene>
         <!--Detail Article View Controller-->
         <scene sceneID="1KS-zJ-9GV">
@@ -114,16 +99,6 @@
                     <view key="view" contentMode="scaleToFill" id="74E-ia-PRB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="J3P-ra-6VV">
-                                <rect key="frame" x="46.999999999999993" y="103" width="63.333333333333336" height="50"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="xKn-lh-mhj">
-                                        <rect key="frame" x="0.0" y="0.0" width="63.333333333333336" height="50"/>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="koF-qW-wlW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>

@@ -9,6 +9,8 @@ import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
     
+    static let  identifier = "ArticleTableViewCell"
+    
     let articleTitle : UILabel = {
         let articleTitle = UILabel()
         articleTitle .translatesAutoresizingMaskIntoConstraints = false
