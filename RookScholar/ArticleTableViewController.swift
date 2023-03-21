@@ -12,6 +12,7 @@ class ArticleTableViewController: UIViewController{
     
     
     private var sideMenu: SideMenuNavigationController?
+    var  isScrolled = 0
     
     var articleTable : UITableView = {
         var articleTable = UITableView()
@@ -25,11 +26,8 @@ class ArticleTableViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        articleTable.dataSource = self
-        articleTable.delegate = self
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        
         addSideMenu()
+        setupUI()
     }
     
     @IBAction func didTabMenuButton() {
@@ -44,14 +42,10 @@ class ArticleTableViewController: UIViewController{
         })
     }
     
-    private func addSideMenu() {
-        self.view.addSubview(articleTable)
-        let menu = MenuController(with: ["Articles"])
-        menu.delegate = self
-        sideMenu = SideMenuNavigationController(rootViewController: menu)
-        sideMenu?.leftSide = false
-        SideMenuManager.default.rightMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
+    private func setupUI(){
+        articleTable.dataSource = self
+        articleTable.delegate = self
+        self.navigationItem.setHidesBackButton(true, animated: true)
         NSLayoutConstraint.activate([articleTable.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor),
                                      articleTable.bottomAnchor.constraint(
@@ -61,8 +55,19 @@ class ArticleTableViewController: UIViewController{
                                      articleTable.trailingAnchor.constraint(
                                          equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
-        
     }
+    
+    private func addSideMenu() {
+        self.view.addSubview(articleTable)
+        let menu = MenuController(with: ["Articles"])
+        menu.delegate = self
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        sideMenu?.leftSide = false
+        SideMenuManager.default.rightMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
+    }
+    
+     
 }
 
 extension ArticleTableViewController: UITableViewDelegate, UITableViewDataSource, MenuControllerDelegate {
@@ -90,7 +95,19 @@ extension ArticleTableViewController: UITableViewDelegate, UITableViewDataSource
         cell.articleTitle.text = article.title
         cell.articleContent.text = article.content
         cell.articleDate.text = dateFormatter.string(from: article.date)
+        if(indexPath.row > 3){
+            cell.isHidden = true
+            if(isScrolled > 2){
+                cell.isHidden = false
+            }
+            
+        }
+        
         return cell
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+       //print("1")
+        isScrolled += 1
     }
     
 }

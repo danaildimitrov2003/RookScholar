@@ -23,6 +23,7 @@ enum Articles{
     Article(title: "Article2", author: "Toma", date: Date.now, content: "coool stuf really cool stuf", image: UIImage(systemName: "\(2).square.fill")!),
     Article(title: "Article3", author: "Toma", date: Date.now, content: "coool stuf really cool stuf", image: UIImage(systemName: "\(3).square.fill")!),
     Article(title: "Article4", author: "Toma", date: Date.now, content: "coool stuf really cool stuf", image: UIImage(systemName: "\(4).square.fill")!),
+    Article(title: "Article5", author: "Toma", date: Date.now, content: "coool stuf really cool stuf", image: UIImage(systemName: "\(5).square.fill")!),
     ]
 }
 
