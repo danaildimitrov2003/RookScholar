@@ -13,6 +13,7 @@ class ArticleTableViewController: UIViewController{
     
     private var sideMenu: SideMenuNavigationController?
     var  isScrolled = 0
+    var  isReloaded = 0
     
     var articleTable : UITableView = {
         var articleTable = UITableView()
@@ -43,6 +44,7 @@ class ArticleTableViewController: UIViewController{
     }
     
     private func setupUI(){
+        articleTable.reloadData()
         articleTable.dataSource = self
         articleTable.delegate = self
         self.navigationItem.setHidesBackButton(true, animated: true)
@@ -78,9 +80,12 @@ extension ArticleTableViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         articleTable.deselectRow(at: indexPath, animated: true)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        isScrolled = 0
+        isReloaded = 0
         let DetailView = storyBoard.instantiateViewController(withIdentifier: "DetailView") as! ArticleDetailViewController
         self.navigationController?.pushViewController(DetailView, animated: true)
         DetailView.article = Articles.articleData[indexPath.row]
+        articleTable.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,19 +100,30 @@ extension ArticleTableViewController: UITableViewDelegate, UITableViewDataSource
         cell.articleTitle.text = article.title
         cell.articleContent.text = article.content
         cell.articleDate.text = dateFormatter.string(from: article.date)
+        
         if(indexPath.row > 3){
             cell.isHidden = true
             if(isScrolled > 2){
+                ArticleTableViewCell.animate(withDuration: 0.5, delay: 0.2, options: [.transitionCurlDown], animations: {
+                    cell.frame.origin.y += 100 
+                }, completion: nil)
                 cell.isHidden = false
             }
-            
         }
         
         return cell
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-       //print("1")
+
         isScrolled += 1
+        if(isScrolled > 2){
+            if(isReloaded == 1){
+                articleTable.reloadData()
+                isReloaded += 1
+            }else if(isReloaded < 1){
+                isReloaded += 1
+            }
+        }
     }
     
 }
