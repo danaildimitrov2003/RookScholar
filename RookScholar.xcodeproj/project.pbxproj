@@ -18,6 +18,7 @@
 		22326CC629B8CCC0001C5DD9 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22326CC529B8CCC0001C5DD9 /* SideMenu.swift */; };
 		22326CC829B8CDBB001C5DD9 /* DetailMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22326CC729B8CDBB001C5DD9 /* DetailMenu.swift */; };
 		22326CCE29C897BB001C5DD9 /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22326CCD29C897BB001C5DD9 /* ArticleTableViewController.swift */; };
+		22326CD029CCAB27001C5DD9 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22326CCF29CCAB27001C5DD9 /* InformationViewController.swift */; };
 		22F1C0B629AE3F6F00213ED1 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1C0B529AE3F6F00213ED1 /* ArticleDetailViewController.swift */; };
 		63E7012E099E0D298FF64A49 /* Pods_RookScholar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C3154C03BD6570BA29C446 /* Pods_RookScholar.framework */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		22326CC529B8CCC0001C5DD9 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		22326CC729B8CDBB001C5DD9 /* DetailMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMenu.swift; sourceTree = "<group>"; };
 		22326CCD29C897BB001C5DD9 /* ArticleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
+		22326CCF29CCAB27001C5DD9 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		22F1C0B529AE3F6F00213ED1 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		30B14B9071FE816594DD1AAB /* Pods-RookScholar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RookScholar.debug.xcconfig"; path = "Target Support Files/Pods-RookScholar/Pods-RookScholar.debug.xcconfig"; sourceTree = "<group>"; };
 		78773E41CE94BB5B81FBBA84 /* Pods-RookScholar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RookScholar.release.xcconfig"; path = "Target Support Files/Pods-RookScholar/Pods-RookScholar.release.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				222B0E8629AC99E600905615 /* ViewController.swift */,
 				222B0E9A29ACF37100905615 /* ArticleTableViewCell.swift */,
 				222B0E8829AC99E600905615 /* Main.storyboard */,
+				22326CCF29CCAB27001C5DD9 /* InformationViewController.swift */,
 				22F1C0B529AE3F6F00213ED1 /* ArticleDetailViewController.swift */,
 				22326CC729B8CDBB001C5DD9 /* DetailMenu.swift */,
 				22326CC529B8CCC0001C5DD9 /* SideMenu.swift */,
@@ -233,6 +236,7 @@
 				222B0E8329AC99E600905615 /* AppDelegate.swift in Sources */,
 				222B0E9B29ACF37100905615 /* ArticleTableViewCell.swift in Sources */,
 				222B0E8529AC99E600905615 /* SceneDelegate.swift in Sources */,
+				22326CD029CCAB27001C5DD9 /* InformationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

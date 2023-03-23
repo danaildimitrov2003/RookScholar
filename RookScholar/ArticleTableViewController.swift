@@ -8,7 +8,7 @@
 import UIKit
 import SideMenu
 
-class ArticleTableViewController: UIViewController{
+class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
     
     private var sideMenu: SideMenuNavigationController?
@@ -72,20 +72,18 @@ class ArticleTableViewController: UIViewController{
      
 }
 
-extension ArticleTableViewController: UITableViewDelegate, UITableViewDataSource, MenuControllerDelegate {
+extension ArticleTableViewController: UITableViewDelegate, MenuControllerDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return articleTable.bounds.height/4
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         articleTable.deselectRow(at: indexPath, animated: true)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        isScrolled = 0
-        isReloaded = 0
         let DetailView = storyBoard.instantiateViewController(withIdentifier: "DetailView") as! ArticleDetailViewController
         self.navigationController?.pushViewController(DetailView, animated: true)
         DetailView.article = Articles.articleData[indexPath.row]
-        articleTable.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,30 +99,9 @@ extension ArticleTableViewController: UITableViewDelegate, UITableViewDataSource
         cell.articleContent.text = article.content
         cell.articleDate.text = dateFormatter.string(from: article.date)
         
-        if(indexPath.row > 3){
-            cell.isHidden = true
-            if(isScrolled > 2){
-                ArticleTableViewCell.animate(withDuration: 0.5, delay: 0.2, options: [.transitionCurlDown], animations: {
-                    cell.frame.origin.y += 100 
-                }, completion: nil)
-                cell.isHidden = false
-            }
-        }
-        
         return cell
     }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        isScrolled += 1
-        if(isScrolled > 2){
-            if(isReloaded == 1){
-                articleTable.reloadData()
-                isReloaded += 1
-            }else if(isReloaded < 1){
-                isReloaded += 1
-            }
-        }
-    }
+    
     
 }
 
