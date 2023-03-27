@@ -12,8 +12,6 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
     
     private var sideMenu: SideMenuNavigationController?
-    var  isScrolled = 0
-    var  isReloaded = 0
     
     var articleTable : UITableView = {
         var articleTable = UITableView()
