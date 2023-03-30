@@ -7,9 +7,11 @@
 
 import UIKit
 import WebKit
+import SideMenu
 
-class InformationViewController: UIViewController {
-    
+class InformationViewController: UIViewController, MenuControllerDelegate {
+  
+    private var sideMenu: SideMenuNavigationController?
     
     var scrollView : UIScrollView = {
         let scrollView = UIScrollView()
@@ -121,22 +123,38 @@ class InformationViewController: UIViewController {
         return uiButton
     }()
     
-    let tournamentsScheduleWebView: WKWebView = {
-        let webView = WKWebView()
-        webView.isHidden = true
-        return webView
-    }()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addValues()
         setupUI()
+        addSideMenu()
         
     }
     
+    @IBAction func didTabMenuButton() {
+        
+        present(sideMenu!, animated: true)
+    }
+    
+    func didSelectMenuItem(named: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        sideMenu?.dismiss(animated: true, completion: {
+            
+            switch named {
+                case "Articles":
+                    let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    self.navigationController?.pushViewController(ArticleTable, animated: true)
+                case "Info":
+                    let InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
+                    self.navigationController?.pushViewController(InformationView, animated: true)
+                
+            default:
+                print(" ")
+            }
+        })
+    }
+    
     private func setupUI(){
-        tournamentsScheduleWebView.load(URLRequest(url: URL(string: "https://www.fide.com/calendar")!))
         pastButton.addTarget(self, action:#selector(self.pastClicked), for: .touchUpInside)
         futureButton.addTarget(self, action:#selector(self.futureClicked), for: .touchUpInside)
         ongoingButton.addTarget(self, action:#selector(self.ongoingClicked), for: .touchUpInside)
@@ -159,7 +177,6 @@ class InformationViewController: UIViewController {
         tournamentsStackView.addArrangedSubview(tournamentsButtonsStackView)
         tournamentsStackView.addArrangedSubview(tournamentsTextView)
         tournamentsStackView.addArrangedSubview(tournamentsScheduleButton)
-        tournamentsStackView.addArrangedSubview(tournamentsScheduleWebView)
         
         
         tournamentsButtonsStackView.addArrangedSubview(pastButton)
@@ -220,6 +237,15 @@ class InformationViewController: UIViewController {
         
     }
     
+    private func addSideMenu() {
+        let menu = MenuController(with: ["Articles", "Info"])
+        menu.delegate = self
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        sideMenu?.leftSide = false
+        SideMenuManager.default.rightMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
+    }
+    
     private func getPastTournamentsText(){
         tournamentsTextView.text = "Past Tournaments \n"
         for tournament in pastTournaments{
@@ -248,7 +274,7 @@ class InformationViewController: UIViewController {
         pastButton.setTitleColor(.red, for: .normal)
         futureButton.setTitleColor(.blue, for: .normal)
         ongoingButton.setTitleColor(.green, for: .normal)
-
+        tournamentsScheduleButton.isHidden = true
         getPastTournamentsText()
         
     }
@@ -257,6 +283,7 @@ class InformationViewController: UIViewController {
         pastButton.setTitleColor(.orange, for: .normal)
         futureButton.setTitleColor(.red, for: .normal)
         ongoingButton.setTitleColor(.green, for: .normal)
+        tournamentsScheduleButton.isHidden = true
         getFutureTournamentsText()
     }
     
@@ -269,11 +296,11 @@ class InformationViewController: UIViewController {
     }
     
     @objc private func scheduleButtonClicked(){
-        
-        tournamentsScheduleWebView.isHidden = false
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let ScheduleView = storyBoard.instantiateViewController(withIdentifier: "ScheduleView") as! ScheduleViewController
+        self.navigationController?.pushViewController(ScheduleView, animated: true)
+
     }
-    
-    
     
 }
 

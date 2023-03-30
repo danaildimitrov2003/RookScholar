@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4L1-8s-Cn0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J11-Nz-Fxe">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -24,20 +24,51 @@
             </objects>
             <point key="canvasLocation" x="-1138" y="4"/>
         </scene>
-        <!--Information View Controller-->
+        <!--RookScholar-->
         <scene sceneID="uYb-Og-JMK">
             <objects>
-                <viewController id="4L1-8s-Cn0" customClass="InformationViewController" customModule="RookScholar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InformationView" id="4L1-8s-Cn0" customClass="InformationViewController" customModule="RookScholar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dm9-fr-Erd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Q4w-Hj-2IO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" title="RookScholar" id="gDH-Fi-GEv">
+                        <barButtonItem key="backBarButtonItem" title=" " id="rJk-hf-m9v"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="r47-MV-5Zj">
+                            <connections>
+                                <action selector="didTabMenuButton" destination="4L1-8s-Cn0" id="brL-2D-jRT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sZ-oG-oVy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1134" y="782"/>
+            <point key="canvasLocation" x="-211.4503816793893" y="781.69014084507046"/>
+        </scene>
+        <!--RookScholar-->
+        <scene sceneID="toy-0O-laZ">
+            <objects>
+                <viewController storyboardIdentifier="ScheduleView" id="8Ba-LL-uzV" customClass="ScheduleViewController" customModule="RookScholar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cfT-lT-sRp">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="O6q-za-pnY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="RookScholar" id="7hU-EI-C1o">
+                        <barButtonItem key="backBarButtonItem" title=" " id="LDf-p4-TNR"/>
+                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="39m-TX-Pwg">
+                            <connections>
+                                <action selector="didTabMenuButton" destination="8Ba-LL-uzV" id="YFy-xd-tFg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CRT-4a-iea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="776.33587786259534" y="781.69014084507046"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -126,6 +157,13 @@
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADe-bV-ZeR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationItem title="RookScholar" id="1Ri-tf-baB">
+                    <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="YmD-fi-5nH">
+                        <connections>
+                            <action selector="didTabMenuButton" destination="5Hq-FG-Id6" id="BgS-lZ-XUW"/>
+                        </connections>
+                    </barButtonItem>
+                </navigationItem>
             </objects>
             <point key="canvasLocation" x="1780.916030534351" y="3.5211267605633805"/>
         </scene>

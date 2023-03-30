@@ -8,7 +8,7 @@
 import UIKit
 import SideMenu
 
-class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegate{
+class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
     
     
     private var sideMenu: SideMenuNavigationController?
@@ -46,7 +46,7 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
         articleImage.translatesAutoresizingMaskIntoConstraints = false
         return articleImage
     }()
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -62,11 +62,18 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
     
     func didSelectMenuItem(named: String) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
         sideMenu?.dismiss(animated: true, completion: {
-            if named == "Articles"{
+            
+            switch named {
+                case "Articles":
+                    let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    self.navigationController?.pushViewController(ArticleTable, animated: true)
+                case "Info":
+                    let InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
+                    self.navigationController?.pushViewController(InformationView, animated: true)
                 
-                self.navigationController?.pushViewController(ArticleTable, animated: true)
+            default:
+                print(" ")
             }
         })
     }
@@ -131,7 +138,7 @@ class ArticleDetailViewController: UIViewController, DetailMenuControllerDelegat
     }
     
     private func addSideMenu() {
-        let menu = DetailMenuController(with: ["Articles"])
+        let menu = MenuController(with: ["Articles", "Info"])
         menu.delegate = self
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         sideMenu?.leftSide = false
