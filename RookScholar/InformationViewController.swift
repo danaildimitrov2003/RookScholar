@@ -116,8 +116,8 @@ class InformationViewController: UIViewController, MenuControllerDelegate {
     var tournamentsScheduleButton: UIButton = {
         let uiButton = UIButton()
         uiButton.setTitle("View tournament schedule", for: .normal)
-        //uiButton.backgroundColor = .blue
-        uiButton.setTitleColor(.blue, for: .normal)
+        uiButton.backgroundColor = .init(named: "AccentColor")
+        uiButton.setTitleColor(.init(named: "SecondaryColor"), for: .normal)
         uiButton.translatesAutoresizingMaskIntoConstraints = false
         uiButton.isHidden = true
         return uiButton
@@ -312,8 +312,8 @@ extension UITextView{
         self.isScrollEnabled = false
         self.isEditable = false
         self.font = UIFont(name: "System", size: 16)
-        //self.textColor = UIColor.blue
-        self.backgroundColor = .systemBlue
+        self.textColor = .init(named: "MainColor")
+        self.backgroundColor = .init(named: "SecondaryColor")
         
         return self
     }
@@ -325,6 +325,7 @@ extension UILabel{
         self.translatesAutoresizingMaskIntoConstraints = false
         self.textAlignment = .left
         self.font = self.font.withSize(20)
+        self.textColor = .init(named: "MainColor")
         
         return self
     }
@@ -337,6 +338,7 @@ extension UIStackView{
         self.axis = .vertical
         self.distribution = .fillProportionally
         self.spacing = 5
+        self.backgroundColor = .init(named: "SecondaryColor")
         
         return self
     }

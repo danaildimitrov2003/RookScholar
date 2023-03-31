@@ -24,12 +24,14 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
         articleTitle.translatesAutoresizingMaskIntoConstraints = false
         articleTitle.textAlignment = .center
         articleTitle.font = articleTitle.font.withSize(27)
+        articleTitle.textColor = .init(named: "MainColor")
         return articleTitle
     }()
     let articleInfo : UILabel = {
         let articleInfo = UILabel()
         articleInfo.translatesAutoresizingMaskIntoConstraints = false
         articleInfo.textAlignment = .center
+        articleInfo.textColor = .init(named: "MainColor")
         return articleInfo
     }()
     let articleContent : UITextView = {
@@ -38,6 +40,8 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
         articleContent.textAlignment = .center
         articleContent.isScrollEnabled = false
         articleContent.isEditable = false
+        articleContent.textColor = .init(named: "MainColor")
+        articleContent.backgroundColor = UIColor(named: "SecondaryColor")
         return articleContent
     }()
     let articleImage : UIImageView = {

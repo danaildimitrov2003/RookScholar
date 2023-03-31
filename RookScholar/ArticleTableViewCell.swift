@@ -15,22 +15,26 @@ class ArticleTableViewCell: UITableViewCell {
         let articleTitle = UILabel()
         articleTitle .translatesAutoresizingMaskIntoConstraints = false
         articleTitle .textAlignment = .center
+        articleTitle.textColor = .init(named: "MainColor")
         return articleTitle
     }()
     let articleContent : UILabel = {
         let articleContent = UILabel()
         articleContent .translatesAutoresizingMaskIntoConstraints = false
         articleContent .textAlignment = .center
+        articleContent.textColor = .init(named: "MainColor")
         return articleContent
     }()
     let articleDate : UILabel = {
         let articleDate = UILabel()
         articleDate .translatesAutoresizingMaskIntoConstraints = false
-        articleDate .textAlignment = .center 
+        articleDate .textAlignment = .center
+        articleDate.textColor = .init(named: "MainColor")
         return articleDate
     }()
     
     private func addLabels() {
+        
         addSubview(articleTitle)
         addSubview(articleContent)
         addSubview(articleDate)

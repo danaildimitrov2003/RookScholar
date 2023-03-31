@@ -18,6 +18,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         articleTable.allowsSelection = true
         articleTable.register(ArticleTableViewCell.self, forCellReuseIdentifier: ArticleTableViewCell.identifier)
         articleTable.translatesAutoresizingMaskIntoConstraints = false
+        articleTable.backgroundColor = UIColor(named: "SecondaryColor")
         return articleTable
         
     }()
@@ -102,6 +103,7 @@ extension ArticleTableViewController: UITableViewDelegate, MenuControllerDelegat
         dateFormatter.dateFormat = "dd/MM/YYYY"
         let article = Articles.articleData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.identifier , for: indexPath) as! ArticleTableViewCell
+        cell.backgroundColor = UIColor(named: "SecondaryColor")
         cell.articleTitle.text = article.title
         cell.articleContent.text = article.content
         cell.articleDate.text = dateFormatter.string(from: article.date)

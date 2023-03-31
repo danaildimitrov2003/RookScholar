@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,6 +16,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ore-qT-zlv">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="SecondaryColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="MainColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jvQ-NO-ksj"/>
@@ -32,7 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Q4w-Hj-2IO"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="SecondaryColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="RookScholar" id="gDH-Fi-GEv">
                         <barButtonItem key="backBarButtonItem" title=" " id="rJk-hf-m9v"/>
@@ -81,8 +86,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to RookScholar!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIg-ZR-XsC">
                                 <rect key="frame" x="30.666666666666657" y="218" width="332" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="textColor" name="MainColor"/>
+                                <color key="highlightedColor" name="MainColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0t-i4-6Yr">
                                 <rect key="frame" x="118" y="320" width="157" height="55"/>
@@ -91,7 +96,11 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Continue">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                    </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
+                                    <color key="baseForegroundColor" name="SecondaryColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="continueButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ibC-7B-0cN"/>
@@ -100,7 +109,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="SecondaryColor"/>
                         <constraints>
                             <constraint firstItem="AIg-ZR-XsC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9rZ-ZU-JJh"/>
                             <constraint firstItem="AIg-ZR-XsC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="115" id="GkU-VR-QZD"/>
@@ -123,7 +132,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ru4-ja-EEF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="SecondaryColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="RookScholar" id="VSE-0U-VrH">
                         <barButtonItem key="backBarButtonItem" title="  " id="tYF-sU-flN"/>
@@ -146,7 +155,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="koF-qW-wlW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="SecondaryColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="RookScholar" id="5QY-nr-vbS">
                         <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="aJr-LJ-WPU">
@@ -170,6 +179,15 @@
     </scenes>
     <resources>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
+        <namedColor name="AccentColor">
+            <color red="0.2235293984413147" green="0.68627452850341797" blue="0.91764706373214722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainColor">
+            <color red="0.36862745098039218" green="0.41176470588235292" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryColor">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
