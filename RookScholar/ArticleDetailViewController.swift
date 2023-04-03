@@ -48,6 +48,8 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
         let articleImage = UIImageView()
         articleImage.contentMode = UIView.ContentMode.scaleAspectFill
         articleImage.translatesAutoresizingMaskIntoConstraints = false
+        articleImage.layer.cornerRadius = 4.0
+        articleImage.clipsToBounds = true
         return articleImage
     }()
     
