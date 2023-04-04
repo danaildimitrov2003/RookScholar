@@ -144,7 +144,7 @@ class InformationViewController: UIViewController, MenuControllerDelegate {
             
             switch named {
                 case "Articles":
-                    let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
                     self.navigationController?.pushViewController(ArticleTable, animated: true)
                 case "Info":
                     let InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
@@ -308,42 +308,8 @@ class InformationViewController: UIViewController, MenuControllerDelegate {
     
 }
 
-extension UITextView{
-    
-    func setupInformationTextView() -> some UITextView {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.textAlignment = .left
-        self.isScrollEnabled = false
-        self.isEditable = false
-        self.font = UIFont(name: "System", size: 16)
-        self.textColor = .init(named: "SecondaryColor")
-        self.backgroundColor = .init(named: "MainColor")
-        
-        return self
-    }
-}
 
-extension UILabel{
-    
-    func setupInformationTitle() -> some UILabel{
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.textAlignment = .left
-        self.font = self.font.withSize(20)
-        self.textColor = .init(named: "SecondaryColor")
-        
-        return self
-    }
-}
 
-extension UIStackView{
-    
-    func setupInformationStackView() -> some UIStackView{
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.axis = .vertical
-        self.distribution = .fillProportionally
-        self.spacing = 5
-        self.backgroundColor = .init(named: "MainColor")
-        self.layer.cornerRadius = 10
-        return self
-    }
-}
+
+
+

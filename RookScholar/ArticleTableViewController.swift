@@ -39,10 +39,10 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         sideMenu?.dismiss(animated: true, completion: {
             switch named {
                 case "Articles":
-                    let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
                     self.navigationController?.pushViewController(ArticleTable, animated: true)
                 case "Info":
-                    let InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
+                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
                     self.navigationController?.pushViewController(InformationView, animated: true)
                 
             default:
@@ -89,7 +89,7 @@ extension ArticleTableViewController: UITableViewDelegate, MenuControllerDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         articleTable.deselectRow(at: indexPath, animated: true)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let DetailView = storyBoard.instantiateViewController(withIdentifier: "DetailView") as! ArticleDetailViewController
+        lazy var DetailView = storyBoard.instantiateViewController(withIdentifier: "DetailView") as! ArticleDetailViewController
         self.navigationController?.pushViewController(DetailView, animated: true)
         DetailView.article = Articles.articleData[indexPath.row]
     }

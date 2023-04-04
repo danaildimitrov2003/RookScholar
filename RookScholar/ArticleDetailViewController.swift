@@ -72,10 +72,10 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
             
             switch named {
                 case "Articles":
-                    let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
                     self.navigationController?.pushViewController(ArticleTable, animated: true)
                 case "Info":
-                    let InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
+                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
                     self.navigationController?.pushViewController(InformationView, animated: true)
                 
             default:

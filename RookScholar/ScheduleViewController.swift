@@ -36,10 +36,10 @@ class ScheduleViewController: UIViewController, MenuControllerDelegate {
             
             switch named {
                 case "Articles":
-                    let ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
                     self.navigationController?.pushViewController(ArticleTable, animated: true)
                 case "Info":
-                    let InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
+                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
                     self.navigationController?.pushViewController(InformationView, animated: true)
                 
             default:
@@ -49,7 +49,6 @@ class ScheduleViewController: UIViewController, MenuControllerDelegate {
     }
     
     private func setupUI(){
-        self.navigationItem.backButtonTitle = "toma"
         self.navigationItem.title = "RookScholar"
         view.addSubview(tournamentsScheduleWebView)
         tournamentsScheduleWebView.load(URLRequest(url: URL(string: "https://www.fide.com/calendar")!))
@@ -61,6 +60,7 @@ class ScheduleViewController: UIViewController, MenuControllerDelegate {
         NSLayoutConstraint.activate(constraints)
         
     }
+    
     private func addSideMenu() {
         let menu = MenuController(with: ["Articles", "Info"])
         menu.delegate = self

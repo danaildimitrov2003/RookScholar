@@ -15,7 +15,7 @@ class ArticleTableViewCell: UITableViewCell {
         let articleTitle = UILabel()
         articleTitle .translatesAutoresizingMaskIntoConstraints = false
         articleTitle .textAlignment = .center
-        articleTitle.textColor = .init(named: "MainColor")
+        articleTitle.textColor = .init(named: "SecondaryColor")
         return articleTitle
     }()
     let articleContent : UILabel = {
@@ -29,21 +29,44 @@ class ArticleTableViewCell: UITableViewCell {
         let articleDate = UILabel()
         articleDate .translatesAutoresizingMaskIntoConstraints = false
         articleDate .textAlignment = .center
-        articleDate.textColor = .init(named: "MainColor")
+        articleDate.textColor = .init(named: "SecondaryColor")
+        articleDate.backgroundColor = .init(named: "MainColor")
         return articleDate
+    }()
+    
+    var labelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 10
+        stackView.layer.cornerRadius = 5
+        stackView.backgroundColor = .init(named: "MainColor")
+        return stackView
     }()
     
     private func addLabels() {
         
-        addSubview(articleTitle)
+        
+        addSubview(labelStackView)
         addSubview(articleContent)
-        addSubview(articleDate)
+        labelStackView.addArrangedSubview(articleTitle)
+        labelStackView.addArrangedSubview(articleDate)
         var constraints = [NSLayoutConstraint]()
-        constraints.append(articleTitle.leadingAnchor.constraint(
+        
+        constraints.append(labelStackView.leadingAnchor.constraint(
             equalTo: leadingAnchor, constant: 10))
+        constraints.append(labelStackView.trailingAnchor.constraint(
+            equalTo: trailingAnchor, constant: -10))
+        
+        constraints.append(labelStackView.topAnchor.constraint(
+            equalTo: topAnchor))
+        
+        constraints.append(articleTitle.leadingAnchor.constraint(
+            equalTo: labelStackView.leadingAnchor, constant: 5))
         
         constraints.append(articleTitle.topAnchor.constraint(
-            equalTo: topAnchor, constant: 10))
+            equalTo: labelStackView.topAnchor, constant: 10))
         
         constraints.append(articleContent.leadingAnchor.constraint(
             equalTo: leadingAnchor, constant: 10))
@@ -53,7 +76,7 @@ class ArticleTableViewCell: UITableViewCell {
             equalTo: topAnchor, constant: 40))
         
         constraints.append(articleDate.trailingAnchor.constraint(
-            equalTo: trailingAnchor, constant: -10))
+            equalTo: labelStackView.trailingAnchor))
         constraints.append(articleDate.topAnchor.constraint(
             equalTo: topAnchor, constant: 10))
        
