@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 import SideMenu
 
-class InformationViewController: UIViewController, MenuControllerDelegate {
+class InformationViewController: UIViewController{
   
     private var sideMenu: SideMenuNavigationController?
     
@@ -90,7 +90,7 @@ class InformationViewController: UIViewController, MenuControllerDelegate {
         let uiButton = UIButton()
         uiButton.setTitle("Past", for: .normal)
         //uiButton.backgroundColor = .orange
-        uiButton.setTitleColor(.red, for: .normal)
+        uiButton.setTitleColor(.init(named: "SelectedTournamentsColor"), for: .normal)
         uiButton.translatesAutoresizingMaskIntoConstraints = false
         return uiButton
     }()
@@ -99,7 +99,7 @@ class InformationViewController: UIViewController, MenuControllerDelegate {
         let uiButton = UIButton()
         uiButton.setTitle("Future", for: .normal)
         //uiButton.backgroundColor = .blue
-        uiButton.setTitleColor(.blue, for: .normal)
+        uiButton.setTitleColor(.init(named: "FutureTournamentsColor"), for: .normal)
         uiButton.translatesAutoresizingMaskIntoConstraints = false
         return uiButton
     }()
@@ -108,7 +108,7 @@ class InformationViewController: UIViewController, MenuControllerDelegate {
         let uiButton = UIButton()
         uiButton.setTitle("Ongoing", for: .normal)
         //uiButton.backgroundColor = .green
-        uiButton.setTitleColor(.green, for: .normal)
+        uiButton.setTitleColor(.init(named: "OnGoingTournamentsColor"), for: .normal)
         uiButton.translatesAutoresizingMaskIntoConstraints = false
         return uiButton
     }()
@@ -134,27 +134,13 @@ class InformationViewController: UIViewController, MenuControllerDelegate {
     }
     
     @IBAction func didTabMenuButton() {
-        
-        present(sideMenu!, animated: true)
+        guard let sideMenuChecked = sideMenu else{
+            return
+        }
+        present(sideMenuChecked , animated: true)
     }
     
-    func didSelectMenuItem(named: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        sideMenu?.dismiss(animated: true, completion: {
-            
-            switch named {
-                case "Articles":
-                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
-                    self.navigationController?.pushViewController(ArticleTable, animated: true)
-                case "Info":
-                    let InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
-                    self.navigationController?.pushViewController(InformationView, animated: true)
-                
-            default:
-                print(" ")
-            }
-        })
-    }
+    
     
     private func setupUI(){
         pastButton.addTarget(self, action:#selector(self.pastClicked), for: .touchUpInside)
@@ -275,39 +261,58 @@ class InformationViewController: UIViewController, MenuControllerDelegate {
     }
     
     @objc private func pastClicked(){
-        pastButton.setTitleColor(.red, for: .normal)
-        futureButton.setTitleColor(.blue, for: .normal)
-        ongoingButton.setTitleColor(.green, for: .normal)
+        pastButton.setTitleColor(.init(named: "SelectedTournamentsColor"), for: .normal)
+        futureButton.setTitleColor(.init(named: "FutureTournamentsColor"), for: .normal)
+        ongoingButton.setTitleColor(.init(named: "OnGoingTournamentsColor"), for: .normal)
         tournamentsScheduleButton.isHidden = true
         getPastTournamentsText()
         
     }
     
     @objc private func futureClicked(){
-        pastButton.setTitleColor(.orange, for: .normal)
-        futureButton.setTitleColor(.red, for: .normal)
-        ongoingButton.setTitleColor(.green, for: .normal)
+        pastButton.setTitleColor(.init(named: "PastTournamentsColor"), for: .normal)
+        futureButton.setTitleColor(.init(named: "SelectedTournamentsColor"), for: .normal)
+        ongoingButton.setTitleColor(.init(named: "OnGoingTournamentsColor"), for: .normal)
         tournamentsScheduleButton.isHidden = true
         getFutureTournamentsText()
     }
     
     @objc private func ongoingClicked(){
-        pastButton.setTitleColor(.orange, for: .normal)
-        futureButton.setTitleColor(.blue, for: .normal)
-        ongoingButton.setTitleColor(.red, for: .normal)
+        pastButton.setTitleColor(.init(named: "PastTournamentsColor"), for: .normal)
+        futureButton.setTitleColor(.init(named: "FutureTournamentsColor"), for: .normal)
+        ongoingButton.setTitleColor(.init(named: "SelectedTournamentsColor"), for: .normal)
         tournamentsScheduleButton.isHidden = false
         getOngoingTournamentsText()
     }
     
     @objc private func scheduleButtonClicked(){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let ScheduleView = storyBoard.instantiateViewController(withIdentifier: "ScheduleView") as! ScheduleViewController
+        lazy var ScheduleView = storyBoard.instantiateViewController(withIdentifier: "ScheduleView") as! ScheduleViewController
         self.navigationController?.pushViewController(ScheduleView, animated: true)
 
     }
     
 }
 
+extension InformationViewController : MenuControllerDelegate{
+    
+    func didSelectMenuItem(named: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        sideMenu?.dismiss(animated: true, completion: {
+            switch named {
+                case "Articles":
+                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    self.navigationController?.pushViewController(ArticleTable, animated: true)
+                case "Info":
+                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
+                    self.navigationController?.pushViewController(InformationView, animated: true)
+                
+            default:
+                print(" ")
+            }
+        })
+    }
+}
 
 
 

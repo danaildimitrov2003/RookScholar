@@ -31,25 +31,13 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     }
     
     @IBAction func didTabMenuButton() {
-        present(sideMenu!, animated: true)
+        guard let sideMenuChecked = sideMenu else{
+            return
+        }
+        present(sideMenuChecked , animated: true)
     }
     
-    func didSelectMenuItem(named: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        sideMenu?.dismiss(animated: true, completion: {
-            switch named {
-                case "Articles":
-                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
-                    self.navigationController?.pushViewController(ArticleTable, animated: true)
-                case "Info":
-                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
-                    self.navigationController?.pushViewController(InformationView, animated: true)
-                
-            default:
-                print(" ")
-            }
-        })
-    }
+    
     
     private func setupUI(){
         articleTable.reloadData()
@@ -80,7 +68,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
      
 }
 
-extension ArticleTableViewController: UITableViewDelegate, MenuControllerDelegate {
+extension ArticleTableViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return articleTable.bounds.height/4
@@ -113,6 +101,27 @@ extension ArticleTableViewController: UITableViewDelegate, MenuControllerDelegat
     
     
 }
+
+extension ArticleTableViewController : MenuControllerDelegate{
+    
+    func didSelectMenuItem(named: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        sideMenu?.dismiss(animated: true, completion: {
+            switch named {
+                case "Articles":
+                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    self.navigationController?.pushViewController(ArticleTable, animated: true)
+                case "Info":
+                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
+                    self.navigationController?.pushViewController(InformationView, animated: true)
+                
+            default:
+                print(" ")
+            }
+        })
+    }
+}
+
 
 
 

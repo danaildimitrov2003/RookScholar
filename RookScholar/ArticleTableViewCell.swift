@@ -47,7 +47,6 @@ class ArticleTableViewCell: UITableViewCell {
     
     private func addLabels() {
         
-        
         addSubview(labelStackView)
         addSubview(articleContent)
         labelStackView.addArrangedSubview(articleTitle)

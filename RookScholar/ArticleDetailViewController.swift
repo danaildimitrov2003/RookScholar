@@ -8,7 +8,7 @@
 import UIKit
 import SideMenu
 
-class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
+class ArticleDetailViewController: UIViewController{
     
     
     private var sideMenu: SideMenuNavigationController?
@@ -24,14 +24,14 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
         articleTitle.translatesAutoresizingMaskIntoConstraints = false
         articleTitle.textAlignment = .center
         articleTitle.font = articleTitle.font.withSize(27)
-        articleTitle.textColor = .init(named: "MainColor")
+        articleTitle.textColor = .init(named: "SecondaryColor")
         return articleTitle
     }()
     let articleInfo : UILabel = {
         let articleInfo = UILabel()
         articleInfo.translatesAutoresizingMaskIntoConstraints = false
         articleInfo.textAlignment = .center
-        articleInfo.textColor = .init(named: "MainColor")
+        articleInfo.textColor = .init(named: "SecondaryColor")
         return articleInfo
     }()
     let articleContent : UITextView = {
@@ -52,6 +52,16 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
         articleImage.clipsToBounds = true
         return articleImage
     }()
+    var labelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 10
+        stackView.layer.cornerRadius = 5
+        stackView.backgroundColor = .init(named: "MainColor")
+        return stackView
+    }()
     
     override func viewDidLoad() {
         
@@ -63,35 +73,23 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
     
     @IBAction func didTabMenuButton() {
         
-        present(sideMenu!, animated: true)
+        guard let sideMenuChecked = sideMenu else{
+            return
+        }
+        present(sideMenuChecked , animated: true)
     }
     
-    func didSelectMenuItem(named: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        sideMenu?.dismiss(animated: true, completion: {
-            
-            switch named {
-                case "Articles":
-                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
-                    self.navigationController?.pushViewController(ArticleTable, animated: true)
-                case "Info":
-                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
-                    self.navigationController?.pushViewController(InformationView, animated: true)
-                
-            default:
-                print(" ")
-            }
-        })
-    }
     
     private func addLabels() {
         var constraints = [NSLayoutConstraint]()
         view.addSubview(scrollView)
         
+        scrollView.addSubview(labelStackView)
         scrollView.addSubview(articleTitle)
         scrollView.addSubview(articleInfo)
         scrollView.addSubview(articleContent)
         scrollView.addSubview(articleImage)
+        
         
         constraints.append(scrollView.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor))
@@ -101,6 +99,8 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
             equalTo: view.safeAreaLayoutGuide.leadingAnchor))
         constraints.append(scrollView.trailingAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.trailingAnchor))
+        
+        
         
         constraints.append(articleTitle.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
         constraints.append(articleTitle.topAnchor.constraint(
@@ -118,6 +118,16 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
             equalTo: scrollView.leadingAnchor, constant: 10))
         constraints.append(articleInfo.trailingAnchor.constraint(
             equalTo: scrollView.trailingAnchor, constant: -10))
+        
+        constraints.append(labelStackView.topAnchor.constraint(
+            equalTo: scrollView.topAnchor, constant: 10))
+        constraints.append(labelStackView.bottomAnchor.constraint(
+            equalTo: scrollView.topAnchor, constant: 60))
+        constraints.append(labelStackView.leadingAnchor.constraint(
+            equalTo: scrollView.leadingAnchor, constant: 10))
+        constraints.append(labelStackView.trailingAnchor.constraint(
+            equalTo: scrollView.trailingAnchor, constant: -10))
+        
         
         constraints.append(articleContent.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80))
         constraints.append(articleContent.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
@@ -150,5 +160,26 @@ class ArticleDetailViewController: UIViewController, MenuControllerDelegate{
         sideMenu?.leftSide = false
         SideMenuManager.default.rightMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
+    }
+}
+
+
+extension ArticleDetailViewController : MenuControllerDelegate{
+    
+    func didSelectMenuItem(named: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        sideMenu?.dismiss(animated: true, completion: {
+            switch named {
+                case "Articles":
+                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
+                    self.navigationController?.pushViewController(ArticleTable, animated: true)
+                case "Info":
+                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
+                    self.navigationController?.pushViewController(InformationView, animated: true)
+                
+            default:
+                print(" ")
+            }
+        })
     }
 }
