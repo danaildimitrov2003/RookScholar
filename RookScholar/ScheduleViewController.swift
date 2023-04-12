@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import SideMenu
+import SwiftUI
 
 class ScheduleViewController: UIViewController{
 
@@ -19,6 +20,8 @@ class ScheduleViewController: UIViewController{
         return webView
     }()
     
+    var  newSideMenu = UIHostingController( rootView: SideMenuUIView())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -26,22 +29,50 @@ class ScheduleViewController: UIViewController{
     }
     
     @IBAction func didTabMenuButton() {
-        guard let sideMenuChecked = sideMenu else{
-            return
+        //fix animations here
+        var constraints = [NSLayoutConstraint]()
+        if(newSideMenu.view.isHidden){
+            UIView.animate(withDuration: 0.5) {
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-160, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+            }
+            constraints.append(newSideMenu.view.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor))
+            NSLayoutConstraint.activate(constraints)
+        }else{
+            UIView.animate(withDuration: 0.5) {
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+            }
         }
-        present(sideMenuChecked , animated: true)
+        
+        newSideMenu.view.isHidden = !newSideMenu.view.isHidden
     }
     
     
     private func setupUI(){
+        
+        newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
+        addChild(newSideMenu)
+        //newSideMenu.view.frame = view.frame
+        newSideMenu.view.isHidden = true
+        //view.addSubview(newSideMenu.view)
+        newSideMenu.didMove(toParent: self)
+        newSideMenu.view.backgroundColor = UIColor(named: "SideMenuColor")
+        
         self.navigationItem.title = "RookScholar"
         view.addSubview(tournamentsScheduleWebView)
+        view.addSubview(newSideMenu.view)
         tournamentsScheduleWebView.load(URLRequest(url: URL(string: "https://www.fide.com/calendar")!))
         var constraints = [NSLayoutConstraint]()
         constraints.append(tournamentsScheduleWebView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
         constraints.append(tournamentsScheduleWebView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
         constraints.append(tournamentsScheduleWebView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor))
         constraints.append(tournamentsScheduleWebView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor))
+        
+        constraints.append(newSideMenu.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
+        constraints.append(newSideMenu.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 60))
+        constraints.append(newSideMenu.view.widthAnchor.constraint(equalToConstant: 160))
+        constraints.append(newSideMenu.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor))
+        
         NSLayoutConstraint.activate(constraints)
         
     }

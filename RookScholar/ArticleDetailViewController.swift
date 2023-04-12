@@ -7,6 +7,7 @@
 
 import UIKit
 import SideMenu
+import SwiftUI
 
 class ArticleDetailViewController: UIViewController{
     
@@ -63,6 +64,14 @@ class ArticleDetailViewController: UIViewController{
         return stackView
     }()
     
+    
+    
+    
+    var  newSideMenu = UIHostingController( rootView: SideMenuUIView())
+    
+    
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -73,14 +82,38 @@ class ArticleDetailViewController: UIViewController{
     
     @IBAction func didTabMenuButton() {
         
-        guard let sideMenuChecked = sideMenu else{
-            return
+        var constraints = [NSLayoutConstraint]()
+        if(newSideMenu.view.isHidden){
+            UIView.animate(withDuration: 0.5) {
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-160, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+            }
+            constraints.append(newSideMenu.view.trailingAnchor.constraint(
+                equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor))
+            NSLayoutConstraint.activate(constraints)
+        }else{
+            UIView.animate(withDuration: 0.5) {
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height) 
+            }
         }
-        present(sideMenuChecked , animated: true)
+        
+        newSideMenu.view.isHidden = !newSideMenu.view.isHidden
+        
+
     }
     
     
     private func addLabels() {
+        
+        newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
+        addChild(newSideMenu)
+        //newSideMenu.view.frame = view.frame
+        newSideMenu.view.isHidden = true
+        //view.addSubview(newSideMenu.view)
+        newSideMenu.didMove(toParent: self)
+        newSideMenu.view.backgroundColor = UIColor(named: "SideMenuColor")
+        
+        
+        
         var constraints = [NSLayoutConstraint]()
         view.addSubview(scrollView)
         
@@ -89,6 +122,7 @@ class ArticleDetailViewController: UIViewController{
         scrollView.addSubview(articleInfo)
         scrollView.addSubview(articleContent)
         scrollView.addSubview(articleImage)
+        scrollView.addSubview(newSideMenu.view)
         
         
         constraints.append(scrollView.topAnchor.constraint(
@@ -99,6 +133,17 @@ class ArticleDetailViewController: UIViewController{
             equalTo: view.safeAreaLayoutGuide.leadingAnchor))
         constraints.append(scrollView.trailingAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.trailingAnchor))
+        
+        constraints.append(newSideMenu.view.topAnchor.constraint(
+            equalTo: scrollView.safeAreaLayoutGuide.topAnchor))
+        constraints.append(newSideMenu.view.trailingAnchor.constraint(
+            equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: 60))
+        constraints.append(newSideMenu.view.widthAnchor.constraint(
+            equalToConstant: 160))
+        constraints.append(newSideMenu.view.heightAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.heightAnchor))
+        
+        
         
         
         

@@ -7,6 +7,7 @@
 
 import UIKit
 import SideMenu
+import SwiftUI
 
 class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
@@ -23,6 +24,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         
     }()
     
+    var  newSideMenu = UIHostingController( rootView: SideMenuUIView())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +33,44 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     }
     
     @IBAction func didTabMenuButton() {
-        guard let sideMenuChecked = sideMenu else{
-            return
+        var constraints = [NSLayoutConstraint]()
+        
+        //fix animations here
+        if(newSideMenu.view.isHidden){
+            UIView.animate(withDuration: 0.5) {
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-160, y: self.view.frame.maxY, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+            }
+            constraints.append(newSideMenu.view.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor))
+            NSLayoutConstraint.activate(constraints)
+        }else{
+            UIView.animate(withDuration: 0.5) {
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX, y: self.view.frame.maxY, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+            }
         }
-        present(sideMenuChecked , animated: true)
+        
+        newSideMenu.view.isHidden = !newSideMenu.view.isHidden
     }
     
     
     
     private func setupUI(){
+        
+        newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
+        addChild(newSideMenu)
+        //newSideMenu.view.frame = view.frame
+        newSideMenu.view.isHidden = true
+        //view.addSubview(newSideMenu.view)
+        newSideMenu.didMove(toParent: self)
+        newSideMenu.view.backgroundColor = UIColor(named: "SideMenuColor")
+        
+        
+        
+        
         articleTable.reloadData()
         articleTable.dataSource = self
         articleTable.delegate = self
+        view.addSubview(newSideMenu.view)
         self.navigationItem.setHidesBackButton(true, animated: true)
         NSLayoutConstraint.activate([articleTable.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -52,6 +80,16 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
                                          equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                                      articleTable.trailingAnchor.constraint(
                                          equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                                     
+                                     
+                                    newSideMenu.view.topAnchor.constraint(
+                                         equalTo: view.safeAreaLayoutGuide.topAnchor),
+                                     newSideMenu.view.trailingAnchor.constraint(
+                                         equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 60),
+                                     newSideMenu.view.widthAnchor.constraint(
+                                         equalToConstant: 160),
+                                     newSideMenu.view.heightAnchor.constraint(
+                                         equalTo: view.safeAreaLayoutGuide.heightAnchor)
         ])
     }
     

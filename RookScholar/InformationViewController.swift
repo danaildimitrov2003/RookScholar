@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import SideMenu
+import SwiftUI
 
 class InformationViewController: UIViewController{
   
@@ -89,7 +90,6 @@ class InformationViewController: UIViewController{
     var pastButton: UIButton = {
         let uiButton = UIButton()
         uiButton.setTitle("Past", for: .normal)
-        //uiButton.backgroundColor = .orange
         uiButton.setTitleColor(.init(named: "SelectedTournamentsColor"), for: .normal)
         uiButton.translatesAutoresizingMaskIntoConstraints = false
         return uiButton
@@ -98,7 +98,6 @@ class InformationViewController: UIViewController{
     var futureButton: UIButton = {
         let uiButton = UIButton()
         uiButton.setTitle("Future", for: .normal)
-        //uiButton.backgroundColor = .blue
         uiButton.setTitleColor(.init(named: "FutureTournamentsColor"), for: .normal)
         uiButton.translatesAutoresizingMaskIntoConstraints = false
         return uiButton
@@ -107,7 +106,6 @@ class InformationViewController: UIViewController{
     var ongoingButton: UIButton = {
         let uiButton = UIButton()
         uiButton.setTitle("Ongoing", for: .normal)
-        //uiButton.backgroundColor = .green
         uiButton.setTitleColor(.init(named: "OnGoingTournamentsColor"), for: .normal)
         uiButton.translatesAutoresizingMaskIntoConstraints = false
         return uiButton
@@ -125,6 +123,8 @@ class InformationViewController: UIViewController{
         return uiButton
     }()
     
+    var  newSideMenu = UIHostingController( rootView: SideMenuUIView())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addValues()
@@ -133,16 +133,38 @@ class InformationViewController: UIViewController{
         
     }
     
+    
     @IBAction func didTabMenuButton() {
-        guard let sideMenuChecked = sideMenu else{
-            return
+
+        var constraints = [NSLayoutConstraint]()
+        if(newSideMenu.view.isHidden){
+            UIView.animate(withDuration: 0.5) {
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-160, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height) 
+            }
+            constraints.append(newSideMenu.view.trailingAnchor.constraint(
+                equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor))
+            NSLayoutConstraint.activate(constraints)
+        }else{
+            UIView.animate(withDuration: 0.5) {
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+            }
         }
-        present(sideMenuChecked , animated: true)
+        
+        newSideMenu.view.isHidden = !newSideMenu.view.isHidden
     }
     
     
-    
     private func setupUI(){
+        
+        newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
+        addChild(newSideMenu)
+        //newSideMenu.view.frame = view.frame
+        newSideMenu.view.isHidden = true
+        //view.addSubview(newSideMenu.view)
+        newSideMenu.didMove(toParent: self)
+        newSideMenu.view.backgroundColor = UIColor(named: "SideMenuColor")
+        
+        
         pastButton.addTarget(self, action:#selector(self.pastClicked), for: .touchUpInside)
         futureButton.addTarget(self, action:#selector(self.futureClicked), for: .touchUpInside)
         ongoingButton.addTarget(self, action:#selector(self.ongoingClicked), for: .touchUpInside)
@@ -154,6 +176,7 @@ class InformationViewController: UIViewController{
         scrollView.addSubview(historyStackView)
         scrollView.addSubview(rulesStackView)
         scrollView.addSubview(tournamentsStackView)
+        scrollView.addSubview(newSideMenu.view)
         
         historyStackView.addArrangedSubview(historyTitle)
         historyStackView.addArrangedSubview(historyTextView)
@@ -210,6 +233,11 @@ class InformationViewController: UIViewController{
         constraints.append(tournamentsTextView.leadingAnchor.constraint(equalTo: tournamentsStackView.leadingAnchor, constant: 10))
         constraints.append(tournamentsTextView.trailingAnchor.constraint(equalTo: tournamentsStackView.trailingAnchor, constant: -10))
         constraints.append(tournamentsScheduleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
+        
+        constraints.append(newSideMenu.view.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor))
+        constraints.append(newSideMenu.view.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: 60))
+        constraints.append(newSideMenu.view.widthAnchor.constraint(equalToConstant: 160))
+        constraints.append(newSideMenu.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor))
         
         
         NSLayoutConstraint.activate(constraints)
