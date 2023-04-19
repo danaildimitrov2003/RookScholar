@@ -35,7 +35,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         //fix animations here
         if(newSideMenu.view.isHidden){
             UIView.animate(withDuration: 0.5) {
-                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-160, y: self.view.frame.maxY, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-185, y: self.view.frame.maxY, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
                 
             }
             constraints.append(newSideMenu.view.trailingAnchor.constraint(
@@ -86,7 +86,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
                                      newSideMenu.view.trailingAnchor.constraint(
                                          equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 60),
                                      newSideMenu.view.widthAnchor.constraint(
-                                         equalToConstant: 160),
+                                         equalToConstant: 185),
                                      newSideMenu.view.heightAnchor.constraint(
                                          equalTo: articleTable.safeAreaLayoutGuide.heightAnchor),
                                      

@@ -79,6 +79,7 @@ struct SideMenuUIView: View {
     struct MenuOption : Identifiable{
         var id: Int
         var name: String
+        var iconName: String
         
     }
     
@@ -86,42 +87,50 @@ struct SideMenuUIView: View {
 
     
     var sideMenuOptions: [MenuOption] = [
-        MenuOption(id: 0,name: "Articles"),
-        MenuOption(id: 1,name: "Info")]
+        MenuOption(id: 0,name: "Articles", iconName: "list.bullet.rectangle.portrait.fill"),
+        MenuOption(id: 1,name: "Info", iconName: "info.square.fill")]
     
     var body: some View{
         
             VStack{
+                    SideMenuHeader()
+                    
+                    .offset(x: 20, y: -30)
+                
                     ForEach(sideMenuOptions) { MenuOption in
+                        
+                        SideMenuItem(title: MenuOption.name , iconName: MenuOption.iconName)
+                        
+                        
 //                        var Destination: View
 //                        if(MenuOption.name == "Articles"){
 //                            Destination = ArticleTableUiView()
 //                        }
                         
-                        if(MenuOption.name == "Articles") {
-                            NavigationLink(destination: ArticleTableUiView(), tag: 1, selection: $selection) {
-                                Button(MenuOption.name) {
-                                    self.selection = 1
-                                    print(MenuOption.name)
-                                    //selectUiView(name: MenuOption.name)
-
-                                }
-                                .foregroundColor(Color("MainColor"))
-                                .font(.title2)
-                            }
-                        }else{
-                            
-                            NavigationLink(destination: InformationUiView(), tag: 1, selection: $selection) {
-                                Button(MenuOption.name) {
-                                    self.selection = 1
-                                    print(MenuOption.name)
-                                    //selectUiView(name: MenuOption.name)
-
-                                }
-                                .foregroundColor(Color("MainColor"))
-                                .font(.title2)
-                            }
-                        }
+//                        if(MenuOption.name == "Articles") {
+//                            NavigationLink(destination: ArticleTableUiView(), tag: 1, selection: $selection) {
+//                                Button(MenuOption.name) {
+//                                    self.selection = 1
+//                                    print(MenuOption.name)
+//                                    //selectUiView(name: MenuOption.name)
+//
+//                                }
+//                                .foregroundColor(Color("MainColor"))
+//                                .font(.title2)
+//                            }
+//                        }else{
+//
+//                            NavigationLink(destination: InformationUiView(), tag: 1, selection: $selection) {
+//                                Button(MenuOption.name) {
+//                                    self.selection = 1
+//                                    print(MenuOption.name)
+//                                    //selectUiView(name: MenuOption.name)
+//
+//                                }
+//                                .foregroundColor(Color("MainColor"))
+//                                .font(.title2)
+//                            }
+//                        }
                         Divider()
                     }
                     Spacer()

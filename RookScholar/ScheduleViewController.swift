@@ -30,7 +30,7 @@ class ScheduleViewController: UIViewController{
         var constraints = [NSLayoutConstraint]()
         if(newSideMenu.view.isHidden){
             UIView.animate(withDuration: 0.5) {
-                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-160, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-185, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
             }
             constraints.append(newSideMenu.view.trailingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.trailingAnchor))
@@ -67,7 +67,7 @@ class ScheduleViewController: UIViewController{
         
         constraints.append(newSideMenu.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
         constraints.append(newSideMenu.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 60))
-        constraints.append(newSideMenu.view.widthAnchor.constraint(equalToConstant: 160))
+        constraints.append(newSideMenu.view.widthAnchor.constraint(equalToConstant: 185))
         constraints.append(newSideMenu.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor))
         
         NSLayoutConstraint.activate(constraints)
