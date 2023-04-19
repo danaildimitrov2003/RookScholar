@@ -7,12 +7,10 @@
 
 import UIKit
 import WebKit
-import SideMenu
 import SwiftUI
 
 class InformationViewController: UIViewController{
   
-    private var sideMenu: SideMenuNavigationController?
     
     var scrollView : UIScrollView = {
         let scrollView = UIScrollView()
@@ -129,7 +127,6 @@ class InformationViewController: UIViewController{
         super.viewDidLoad()
         addValues()
         setupUI()
-        addSideMenu()
         
     }
     
@@ -170,6 +167,9 @@ class InformationViewController: UIViewController{
         ongoingButton.addTarget(self, action:#selector(self.ongoingClicked), for: .touchUpInside)
         tournamentsScheduleButton.addTarget(self, action:#selector(self.scheduleButtonClicked), for: .touchUpInside)
         var constraints = [NSLayoutConstraint]()
+        
+        
+        scrollView.alwaysBounceVertical = true
         
         view.addSubview(scrollView)
         
@@ -255,14 +255,6 @@ class InformationViewController: UIViewController{
         
     }
     
-    private func addSideMenu() {
-        let menu = MenuController(with: ["Articles", "Info"])
-        menu.delegate = self
-        sideMenu = SideMenuNavigationController(rootViewController: menu)
-        sideMenu?.leftSide = false
-        SideMenuManager.default.rightMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
-    }
     
     private func getPastTournamentsText(){
         tournamentsTextView.text = "Past Tournaments \n"
@@ -322,25 +314,6 @@ class InformationViewController: UIViewController{
     
 }
 
-extension InformationViewController : MenuControllerDelegate{
-    
-    func didSelectMenuItem(named: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        sideMenu?.dismiss(animated: true, completion: {
-            switch named {
-                case "Articles":
-                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
-                    self.navigationController?.pushViewController(ArticleTable, animated: true)
-                case "Info":
-                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
-                    self.navigationController?.pushViewController(InformationView, animated: true)
-                
-            default:
-                print(" ")
-            }
-        })
-    }
-}
 
 
 

@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import SideMenu
 import SwiftUI
 
 class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
     
-    private var sideMenu: SideMenuNavigationController?
     
     var articleTable : UITableView = {
         var articleTable = UITableView()
@@ -28,7 +26,6 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSideMenu()
         setupUI()
     }
     
@@ -39,6 +36,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         if(newSideMenu.view.isHidden){
             UIView.animate(withDuration: 0.5) {
                 self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-160, y: self.view.frame.maxY, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+                
             }
             constraints.append(newSideMenu.view.trailingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.trailingAnchor))
@@ -70,6 +68,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         articleTable.reloadData()
         articleTable.dataSource = self
         articleTable.delegate = self
+        view.addSubview(articleTable)
         view.addSubview(newSideMenu.view)
         self.navigationItem.setHidesBackButton(true, animated: true)
         NSLayoutConstraint.activate([articleTable.topAnchor.constraint(
@@ -83,27 +82,19 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
                                      
                                      
                                     newSideMenu.view.topAnchor.constraint(
-                                         equalTo: view.safeAreaLayoutGuide.topAnchor),
+                                         equalTo: articleTable.safeAreaLayoutGuide.topAnchor),
                                      newSideMenu.view.trailingAnchor.constraint(
                                          equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 60),
                                      newSideMenu.view.widthAnchor.constraint(
                                          equalToConstant: 160),
                                      newSideMenu.view.heightAnchor.constraint(
-                                         equalTo: view.safeAreaLayoutGuide.heightAnchor)
+                                         equalTo: articleTable.safeAreaLayoutGuide.heightAnchor),
+                                     
+                                     
         ])
     }
     
-    private func addSideMenu() {
-        self.view.addSubview(articleTable)
-        let menu = MenuController(with: ["Articles", "Info"])
-        menu.delegate = self
-        sideMenu = SideMenuNavigationController(rootViewController: menu)
-        sideMenu?.leftSide = false
-        SideMenuManager.default.rightMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
-    }
     
-     
 }
 
 extension ArticleTableViewController: UITableViewDelegate{
@@ -140,25 +131,7 @@ extension ArticleTableViewController: UITableViewDelegate{
     
 }
 
-extension ArticleTableViewController : MenuControllerDelegate{
-    
-    func didSelectMenuItem(named: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        sideMenu?.dismiss(animated: true, completion: {
-            switch named {
-                case "Articles":
-                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
-                    self.navigationController?.pushViewController(ArticleTable, animated: true)
-                case "Info":
-                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
-                    self.navigationController?.pushViewController(InformationView, animated: true)
-                
-            default:
-                print(" ")
-            }
-        })
-    }
-}
+
 
 
 

@@ -7,12 +7,10 @@
 
 import UIKit
 import WebKit
-import SideMenu
 import SwiftUI
 
 class ScheduleViewController: UIViewController{
 
-    private var sideMenu: SideMenuNavigationController?
     
     let tournamentsScheduleWebView: WKWebView = {
         let webView = WKWebView()
@@ -25,7 +23,6 @@ class ScheduleViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        addSideMenu()
     }
     
     @IBAction func didTabMenuButton() {
@@ -77,33 +74,6 @@ class ScheduleViewController: UIViewController{
         
     }
     
-    private func addSideMenu() {
-        let menu = MenuController(with: ["Articles", "Info"])
-        menu.delegate = self
-        sideMenu = SideMenuNavigationController(rootViewController: menu)
-        sideMenu?.leftSide = false
-        SideMenuManager.default.rightMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
-    }
 
 }
 
-extension ScheduleViewController : MenuControllerDelegate{
-    
-    func didSelectMenuItem(named: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        sideMenu?.dismiss(animated: true, completion: {
-            switch named {
-                case "Articles":
-                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
-                    self.navigationController?.pushViewController(ArticleTable, animated: true)
-                case "Info":
-                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
-                    self.navigationController?.pushViewController(InformationView, animated: true)
-                
-            default:
-                print(" ")
-            }
-        })
-    }
-}

@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import SideMenu
 import SwiftUI
 
 class ArticleDetailViewController: UIViewController{
     
     
-    private var sideMenu: SideMenuNavigationController?
     var article: Article = Article(title: "", author: "", date: Date.now, content: "", image: UIImage(systemName: "\(2).square.fill")!)
     
     var scrollView : UIScrollView = {
@@ -77,7 +75,6 @@ class ArticleDetailViewController: UIViewController{
         super.viewDidLoad()
         addLabels()
         addValues()
-        addSideMenu()
     }
     
     @IBAction func didTabMenuButton() {
@@ -198,33 +195,8 @@ class ArticleDetailViewController: UIViewController{
         self.articleContent.textContainer.exclusionPaths = [UIBezierPath(rect: articleImage.frame)]
     }
     
-    private func addSideMenu() {
-        let menu = MenuController(with: ["Articles", "Info"])
-        menu.delegate = self
-        sideMenu = SideMenuNavigationController(rootViewController: menu)
-        sideMenu?.leftSide = false
-        SideMenuManager.default.rightMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
-    }
+   
 }
 
 
-extension ArticleDetailViewController : MenuControllerDelegate{
-    
-    func didSelectMenuItem(named: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        sideMenu?.dismiss(animated: true, completion: {
-            switch named {
-                case "Articles":
-                    lazy var ArticleTable = storyBoard.instantiateViewController(withIdentifier: "ArticleTable") as! ArticleTableViewController
-                    self.navigationController?.pushViewController(ArticleTable, animated: true)
-                case "Info":
-                    lazy var InformationView = storyBoard.instantiateViewController(withIdentifier: "InformationView") as! InformationViewController
-                    self.navigationController?.pushViewController(InformationView, animated: true)
-                
-            default:
-                print(" ")
-            }
-        })
-    }
-}
+
