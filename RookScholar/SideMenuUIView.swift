@@ -84,6 +84,7 @@ struct SideMenuUIView: View {
     }
     
     @State var selection: Int? = nil
+    @State var isMovedOut = false
 
     
     var sideMenuOptions: [MenuOption] = [
@@ -93,76 +94,48 @@ struct SideMenuUIView: View {
     var body: some View{
         
             VStack{
-                    SideMenuHeader()
-                    
-                    .offset(x: 20, y: -30)
                 
                     ForEach(sideMenuOptions) { MenuOption in
                         
-                        SideMenuItem(title: MenuOption.name , iconName: MenuOption.iconName)
-                        
-                        
-//                        var Destination: View
-//                        if(MenuOption.name == "Articles"){
-//                            Destination = ArticleTableUiView()
-//                        }
-                        
-//                        if(MenuOption.name == "Articles") {
-//                            NavigationLink(destination: ArticleTableUiView(), tag: 1, selection: $selection) {
-//                                Button(MenuOption.name) {
-//                                    self.selection = 1
-//                                    print(MenuOption.name)
-//                                    //selectUiView(name: MenuOption.name)
-//
-//                                }
-//                                .foregroundColor(Color("MainColor"))
-//                                .font(.title2)
-//                            }
-//                        }else{
-//
-//                            NavigationLink(destination: InformationUiView(), tag: 1, selection: $selection) {
-//                                Button(MenuOption.name) {
-//                                    self.selection = 1
-//                                    print(MenuOption.name)
-//                                    //selectUiView(name: MenuOption.name)
-//
-//                                }
-//                                .foregroundColor(Color("MainColor"))
-//                                .font(.title2)
-//                            }
-//                        }
+                        if(MenuOption.name == "Articles") {
+                            NavigationLink(destination: ArticleTableUiView(), tag: 1, selection: $selection) {
+                                Button{
+                                    self.selection = 1
+                                    print(MenuOption.name)
+                                    
+
+                                }label: {
+                                    SideMenuItem(title: MenuOption.name , iconName: MenuOption.iconName)
+                                }
+                                .foregroundColor(Color("MainColor"))
+                                .font(.title2)
+                            }
+                        }else{
+
+                            NavigationLink(destination: InformationUiView(), tag: 2, selection: $selection) {
+                                Button {
+                                    self.selection = 2
+                                    print(MenuOption.name)
+                                    
+
+                                }label: {
+                                    SideMenuItem(title: MenuOption.name , iconName: MenuOption.iconName)
+                                }
+                                .foregroundColor(Color("MainColor"))
+                                .font(.title2)
+                            }
+                        }
                         Divider()
                     }
+                    .offset(x: isMovedOut ? UIScreen.main.bounds.width : 0)
                     Spacer()
                     
                 }
                 .padding(40)
                 .background(Color("SideMenuColor"))
                 .edgesIgnoringSafeArea(.bottom)
-                .onTapGesture {
-                    //showMenu.toggle()
-                    //showMenu = showMenu
-            }
     }
    
-    //var name : String
-    
-//    func selectUiView(name: String) ->  any View {
-//
-//        switch name {
-//        case "Articles":
-//            return ArticleTableUiView()
-//
-//        case "Info":
-//            return InformationUiView()
-//
-//        default:
-//            print("Have you done something new?")
-//            return ArticleTableUiView()
-//        }
-//
-//
-//    }
     
 }
 

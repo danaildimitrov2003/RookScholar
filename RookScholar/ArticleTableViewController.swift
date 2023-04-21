@@ -22,6 +22,10 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         
     }()
     
+    let normalImage = UIImage(systemName: "line.3.horizontal")
+    let pressedImage = UIImage(systemName: "xmark")
+    
+    
     var  newSideMenu = UIHostingController( rootView: SideMenuUIView())
     
     override func viewDidLoad() {
@@ -29,11 +33,13 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         setupUI()
     }
     
-    @IBAction func didTabMenuButton() {
-        var constraints = [NSLayoutConstraint]()
+    @objc func didTabMenuButton() {
         
+        
+        var constraints = [NSLayoutConstraint]()
         //fix animations here
         if(newSideMenu.view.isHidden){
+            navigationItem.rightBarButtonItem?.image = pressedImage
             UIView.animate(withDuration: 0.5) {
                 self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-185, y: self.view.frame.maxY, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
                 
@@ -42,6 +48,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
                 equalTo: view.safeAreaLayoutGuide.trailingAnchor))
             NSLayoutConstraint.activate(constraints)
         }else{
+            navigationItem.rightBarButtonItem?.image = normalImage
             UIView.animate(withDuration: 0.5) {
                 self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX, y: self.view.frame.maxY, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
             }
@@ -53,23 +60,23 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
     
     private func setupUI(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: normalImage, style: .plain, target: self, action: #selector(didTabMenuButton))
         
         newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
         addChild(newSideMenu)
         //newSideMenu.view.frame = view.frame
         newSideMenu.view.isHidden = true
-        //view.addSubview(newSideMenu.view)
         newSideMenu.didMove(toParent: self)
         newSideMenu.view.backgroundColor = UIColor(named: "SideMenuColor")
         
         
         
         
-        articleTable.reloadData()
         articleTable.dataSource = self
         articleTable.delegate = self
         view.addSubview(articleTable)
         view.addSubview(newSideMenu.view)
+        
         self.navigationItem.setHidesBackButton(true, animated: true)
         NSLayoutConstraint.activate([articleTable.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -82,17 +89,24 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
                                      
                                      
                                     newSideMenu.view.topAnchor.constraint(
-                                         equalTo: articleTable.safeAreaLayoutGuide.topAnchor),
+                                         equalTo: view.safeAreaLayoutGuide.topAnchor),
                                      newSideMenu.view.trailingAnchor.constraint(
                                          equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 60),
                                      newSideMenu.view.widthAnchor.constraint(
                                          equalToConstant: 185),
                                      newSideMenu.view.heightAnchor.constraint(
-                                         equalTo: articleTable.safeAreaLayoutGuide.heightAnchor),
+                                         equalTo: view.safeAreaLayoutGuide.heightAnchor),
+                                     newSideMenu.view.bottomAnchor.constraint(
+                                            equalTo: view.safeAreaLayoutGuide.bottomAnchor),
                                      
+                                     
+                                    
+                                                                  
                                      
         ])
     }
+    
+    
     
     
 }

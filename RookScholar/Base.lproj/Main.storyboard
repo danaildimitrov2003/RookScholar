@@ -43,16 +43,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="RookScholar" id="gDH-Fi-GEv">
                         <barButtonItem key="backBarButtonItem" title=" " id="rJk-hf-m9v"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="r47-MV-5Zj">
-                            <connections>
-                                <action selector="didTabMenuButton" destination="4L1-8s-Cn0" id="brL-2D-jRT"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sZ-oG-oVy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-211.4503816793893" y="781.69014084507046"/>
+            <point key="canvasLocation" x="715.26717557251902" y="781.69014084507046"/>
         </scene>
         <!--RookScholar-->
         <scene sceneID="toy-0O-laZ">
@@ -66,16 +61,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="RookScholar" id="7hU-EI-C1o">
                         <barButtonItem key="backBarButtonItem" title=" " id="LDf-p4-TNR"/>
-                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="39m-TX-Pwg">
-                            <connections>
-                                <action selector="didTabMenuButton" destination="8Ba-LL-uzV" id="YFy-xd-tFg"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CRT-4a-iea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="776.33587786259534" y="781.69014084507046"/>
+            <point key="canvasLocation" x="1701.5267175572519" y="781.69014084507046"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -144,11 +134,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="RookScholar" id="VSE-0U-VrH">
                         <barButtonItem key="backBarButtonItem" title="  " id="tYF-sU-flN"/>
-                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="fNW-TU-IeJ">
-                            <connections>
-                                <action selector="didTabMenuButton" destination="AbX-7y-gXe" id="V1r-JR-MMj"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSN-AI-CnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -165,28 +150,15 @@
                         <viewLayoutGuide key="safeArea" id="koF-qW-wlW"/>
                         <color key="backgroundColor" name="SecondaryColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="RookScholar" id="5QY-nr-vbS">
-                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="aJr-LJ-WPU">
-                            <connections>
-                                <action selector="didTabMenuButton" destination="5Hq-FG-Id6" id="4Qh-aB-d34"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="RookScholar" id="5QY-nr-vbS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADe-bV-ZeR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationItem title="RookScholar" id="1Ri-tf-baB">
-                    <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="YmD-fi-5nH">
-                        <connections>
-                            <action selector="didTabMenuButton" destination="5Hq-FG-Id6" id="BgS-lZ-XUW"/>
-                        </connections>
-                    </barButtonItem>
-                </navigationItem>
+                <navigationItem title="RookScholar" id="1Ri-tf-baB"/>
             </objects>
             <point key="canvasLocation" x="1780.916030534351" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
-        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <namedColor name="AccentColor">
             <color red="0.2235293984413147" green="0.68627452850341797" blue="0.91764706373214722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

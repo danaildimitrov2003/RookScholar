@@ -20,7 +20,6 @@
 		22326CD229D30B21001C5DD9 /* Tournaments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22326CD129D30B21001C5DD9 /* Tournaments.swift */; };
 		22326CD429D58E59001C5DD9 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22326CD329D58E59001C5DD9 /* ScheduleViewController.swift */; };
 		2256DF1529EFF7B300D7E3FC /* SideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2256DF1429EFF7B300D7E3FC /* SideMenuItem.swift */; };
-		2256DF1729F0286900D7E3FC /* SideMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2256DF1629F0286900D7E3FC /* SideMenuHeader.swift */; };
 		2289A8DA29DC6F8D001D770A /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289A8D929DC6F8D001D770A /* UILabelExtensions.swift */; };
 		2289A8DC29DC7000001D770A /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289A8DB29DC7000001D770A /* UIStackViewExtensions.swift */; };
 		2289A8DE29DC7580001D770A /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289A8DD29DC7580001D770A /* UITextViewExtensions.swift */; };
@@ -44,7 +43,6 @@
 		22326CD129D30B21001C5DD9 /* Tournaments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournaments.swift; sourceTree = "<group>"; };
 		22326CD329D58E59001C5DD9 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		2256DF1429EFF7B300D7E3FC /* SideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItem.swift; sourceTree = "<group>"; };
-		2256DF1629F0286900D7E3FC /* SideMenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeader.swift; sourceTree = "<group>"; };
 		2289A8D929DC6F8D001D770A /* UILabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 		2289A8DB29DC7000001D770A /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
 		2289A8DD29DC7580001D770A /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 				22326CD329D58E59001C5DD9 /* ScheduleViewController.swift */,
 				22F1C0B529AE3F6F00213ED1 /* ArticleDetailViewController.swift */,
 				2289A8DF29E3F5A7001D770A /* SideMenuUIView.swift */,
-				2256DF1629F0286900D7E3FC /* SideMenuHeader.swift */,
 				2256DF1429EFF7B300D7E3FC /* SideMenuItem.swift */,
 				222B0E9629ACA1D700905615 /* Article.swift */,
 				22326CD129D30B21001C5DD9 /* Tournaments.swift */,
@@ -187,7 +184,6 @@
 			files = (
 				22326CCE29C897BB001C5DD9 /* ArticleTableViewController.swift in Sources */,
 				22326CD229D30B21001C5DD9 /* Tournaments.swift in Sources */,
-				2256DF1729F0286900D7E3FC /* SideMenuHeader.swift in Sources */,
 				22326CD429D58E59001C5DD9 /* ScheduleViewController.swift in Sources */,
 				2289A8E029E3F5A7001D770A /* SideMenuUIView.swift in Sources */,
 				222B0E9729ACA1D700905615 /* Article.swift in Sources */,

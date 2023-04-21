@@ -20,15 +20,19 @@ class ScheduleViewController: UIViewController{
     
     var  newSideMenu = UIHostingController( rootView: SideMenuUIView())
     
+    let normalImage = UIImage(systemName: "line.3.horizontal")
+    let pressedImage = UIImage(systemName: "xmark")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
-    @IBAction func didTabMenuButton() {
+    @objc func didTabMenuButton() {
         //fix animations here
         var constraints = [NSLayoutConstraint]()
         if(newSideMenu.view.isHidden){
+            navigationItem.rightBarButtonItem?.image = pressedImage
             UIView.animate(withDuration: 0.5) {
                 self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-185, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
             }
@@ -36,6 +40,7 @@ class ScheduleViewController: UIViewController{
                 equalTo: view.safeAreaLayoutGuide.trailingAnchor))
             NSLayoutConstraint.activate(constraints)
         }else{
+            navigationItem.rightBarButtonItem?.image = normalImage
             UIView.animate(withDuration: 0.5) {
                 self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
             }
@@ -46,6 +51,7 @@ class ScheduleViewController: UIViewController{
     
     
     private func setupUI(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: normalImage, style: .plain, target: self, action: #selector(didTabMenuButton))
         
         newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
         addChild(newSideMenu)
