@@ -8,38 +8,6 @@
 import SwiftUI
 
 
-struct ContentView:View {
-    
-    @State private var showMenu : Bool = false
-    
-    var body: some View{
-        
-        NavigationView{
-            
-            ZStack {
-                Button("Open Menu") {
-                    showMenu.toggle()
-                }
-                .foregroundColor(.red)
-                
-                GeometryReader { _ in
-                    HStack {
-                        Spacer()
-                        
-//                        SideMenuUIView(showMenu:showMenu)
-//                            .offset(x: showMenu ? 0 : UIScreen.main.bounds.width)
-//                            .animation(.easeInOut(duration: 0.30), value: showMenu)
-//
-                    }
-                }
-                
-            }
-            .background(.mint.opacity(0))
-            
-            
-        }
-    }
-}
 
 struct ArticleTableUiView: UIViewControllerRepresentable {
     
@@ -84,7 +52,6 @@ struct SideMenuUIView: View {
     }
     
     @State var selection: Int? = nil
-    @State var isMovedOut = false
 
     
     var sideMenuOptions: [MenuOption] = [
@@ -127,7 +94,7 @@ struct SideMenuUIView: View {
                         }
                         Divider()
                     }
-                    .offset(x: isMovedOut ? UIScreen.main.bounds.width : 0)
+                    
                     Spacer()
                     
                 }
@@ -145,10 +112,6 @@ struct SideMenuUIView: View {
 struct SideMenuUIView_Previews: PreviewProvider {
     @Binding var showMenu:Bool
     static var previews: some View {
-        ContentView()
-            .aspectRatio(1, contentMode: .fit)
-            .padding()
-            .previewLayout(.sizeThatFits)
         SideMenuUIView()
             .aspectRatio(1, contentMode: .fit)
             .padding()

@@ -82,15 +82,15 @@ class ArticleDetailViewController: UIViewController{
         if(newSideMenu.view.isHidden){
             navigationItem.rightBarButtonItem?.image = pressedImage
             UIView.animate(withDuration: 0.5) {
-                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX-185, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height)
+                self.newSideMenu.view.frame.origin.x = self.view.frame.width - self.newSideMenu.view.frame.width
             }
             constraints.append(newSideMenu.view.trailingAnchor.constraint(
-                equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor))
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor))
             NSLayoutConstraint.activate(constraints)
         }else{
-            navigationItem.rightBarButtonItem?.image = normalImage
+           navigationItem.rightBarButtonItem?.image = normalImage
             UIView.animate(withDuration: 0.5) {
-                self.newSideMenu.view.frame = CGRect(x: self.view.frame.maxX, y: 0, width: self.newSideMenu.view.bounds.width, height: self.newSideMenu.view.bounds.height) 
+                self.newSideMenu.view.frame.origin.x = self.view.frame.width + self.newSideMenu.view.frame.width
             }
         }
         
@@ -104,11 +104,10 @@ class ArticleDetailViewController: UIViewController{
         
         newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
         addChild(newSideMenu)
-        //newSideMenu.view.frame = view.frame
         newSideMenu.view.isHidden = true
-        //view.addSubview(newSideMenu.view)
         newSideMenu.didMove(toParent: self)
         newSideMenu.view.backgroundColor = UIColor(named: "SideMenuColor")
+        newSideMenu.view.frame = CGRect(x: view.frame.width + 185, y: view.bounds.maxY, width: 185, height: view.bounds.height)
         
         
         
@@ -135,7 +134,7 @@ class ArticleDetailViewController: UIViewController{
         constraints.append(newSideMenu.view.topAnchor.constraint(
             equalTo: scrollView.safeAreaLayoutGuide.topAnchor))
         constraints.append(newSideMenu.view.trailingAnchor.constraint(
-            equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: 60))
+            equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: 185))
         constraints.append(newSideMenu.view.widthAnchor.constraint(
             equalToConstant: 185))
         constraints.append(newSideMenu.view.heightAnchor.constraint(
