@@ -8,8 +8,8 @@
 import UIKit
 import SwiftUI
 
+
 class ArticleTableViewController: UIViewController, UITableViewDataSource{
-    
     
     
     var articleTable : UITableView = {
@@ -29,6 +29,9 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     var  newSideMenu = UIHostingController( rootView: SideMenuUIView())
     
     override func viewDidLoad() {
+        
+        
+        
         super.viewDidLoad()
         setupUI()
     }
@@ -58,7 +61,12 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
     
     private func setupUI(){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: normalImage, style: .plain, target: self, action: #selector(didTabMenuButton))
+        let sideMenuProvider = SideMenuProvider(presenter: self.navigationController)
+        
+        navigationItem.rightBarButtonItem = sideMenuProvider.burgerButton()
+        
+        
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: normalImage, style: .plain, target: self, action: #selector(didTabMenuButton))
         
         newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
         addChild(newSideMenu)
