@@ -10,8 +10,7 @@ import SwiftUI
 
 
 class ArticleTableViewController: UIViewController, UITableViewDataSource{
-    
-    
+        
     var articleTable : UITableView = {
         var articleTable = UITableView()
         articleTable.allowsSelection = true
@@ -21,6 +20,8 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         return articleTable
         
     }()
+    
+    var sideMenuProvider = SideMenuProvider()
     
     let normalImage = UIImage(systemName: "line.3.horizontal")
     let pressedImage = UIImage(systemName: "xmark")
@@ -61,7 +62,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
     
     private func setupUI(){
-        let sideMenuProvider = SideMenuProvider(presenter: self.navigationController)
+        sideMenuProvider = SideMenuProvider(presenter: self.navigationController)
         
         navigationItem.rightBarButtonItem = sideMenuProvider.burgerButton()
         

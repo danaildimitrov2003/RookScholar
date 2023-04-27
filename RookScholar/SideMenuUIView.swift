@@ -101,7 +101,9 @@ struct SideMenuUIView: View {
                 .padding(40)
                 .background(Color("SideMenuColor"))
                 .edgesIgnoringSafeArea(.bottom)
+                .frame(width: 185)
     }
+        
    
     
 }
