@@ -23,11 +23,6 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
     
     var sideMenuProvider = SideMenuProvider()
     
-    let normalImage = UIImage(systemName: "line.3.horizontal")
-    let pressedImage = UIImage(systemName: "xmark")
-    
-    
-    var  newSideMenu = UIHostingController( rootView: SideMenuUIView())
     
     override func viewDidLoad() {
         
@@ -37,27 +32,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         setupUI()
     }
     
-    @objc func didTabMenuButton() {
-        
-        
-        var constraints = [NSLayoutConstraint]()
-        if(newSideMenu.view.isHidden){
-            navigationItem.rightBarButtonItem?.image = pressedImage
-            UIView.animate(withDuration: 0.5) {
-                self.newSideMenu.view.frame.origin.x = self.view.frame.width - self.newSideMenu.view.frame.width
-            }
-            constraints.append(newSideMenu.view.trailingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.trailingAnchor))
-            NSLayoutConstraint.activate(constraints)
-        }else{
-           navigationItem.rightBarButtonItem?.image = normalImage
-            UIView.animate(withDuration: 0.5) {
-                self.newSideMenu.view.frame.origin.x = self.view.frame.width + self.newSideMenu.view.frame.width
-            }
-        }
-        
-        newSideMenu.view.isHidden = !newSideMenu.view.isHidden
-    }
+
     
     
     
@@ -66,20 +41,9 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         
         navigationItem.rightBarButtonItem = sideMenuProvider.burgerButton()
         
-        
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: normalImage, style: .plain, target: self, action: #selector(didTabMenuButton))
-        
-        newSideMenu.view.translatesAutoresizingMaskIntoConstraints = false
-        addChild(newSideMenu)
-        newSideMenu.view.isHidden = true
-        newSideMenu.didMove(toParent: self)
-        newSideMenu.view.backgroundColor = UIColor(named: "SideMenuColor")
-        newSideMenu.view.frame = CGRect(x: view.frame.width + 185, y: view.bounds.maxY, width: 185, height: view.bounds.height)
-        
         articleTable.dataSource = self
         articleTable.delegate = self
         view.addSubview(articleTable)
-        view.addSubview(newSideMenu.view)
         
         self.navigationItem.setHidesBackButton(true, animated: true)
         NSLayoutConstraint.activate([articleTable.topAnchor.constraint(
@@ -89,25 +53,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
                                      articleTable.leadingAnchor.constraint(
                                          equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                                      articleTable.trailingAnchor.constraint(
-                                         equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                     
-                                     
-                                    newSideMenu.view.topAnchor.constraint(
-                                         equalTo: view.safeAreaLayoutGuide.topAnchor),
-                                     newSideMenu.view.trailingAnchor.constraint(
-                                         equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 185),
-                                     newSideMenu.view.widthAnchor.constraint(
-                                         equalToConstant: 185),
-                                     newSideMenu.view.heightAnchor.constraint(
-                                         equalTo: view.safeAreaLayoutGuide.heightAnchor),
-                                     newSideMenu.view.bottomAnchor.constraint(
-                                            equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                                     
-                                     
-                                    
-                                                                  
-                                     
-        ])
+                                         equalTo: view.safeAreaLayoutGuide.trailingAnchor),])
     }
     
     
