@@ -40,7 +40,7 @@ class ArticleTableViewController: UIViewController, UITableViewDataSource{
         sideMenuProvider = SideMenuProvider(presenter: self.navigationController)
         
         navigationItem.rightBarButtonItem = sideMenuProvider.burgerButton()
-        
+        sideMenuProvider.delegate = self 
         articleTable.dataSource = self
         articleTable.delegate = self
         view.addSubview(articleTable)
@@ -90,6 +90,17 @@ extension ArticleTableViewController: UITableViewDelegate{
         cell.articleDate.text = dateFormatter.string(from: article.date)
         
         return cell
+    }
+    
+    
+}
+extension ArticleTableViewController:SideMenuDelegate{
+    func isRight() -> Bool {
+        true
+    }
+    
+    func sideMenuWidth() -> CGFloat {
+        185.0
     }
     
     

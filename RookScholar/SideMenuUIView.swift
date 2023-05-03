@@ -62,6 +62,7 @@ struct SideMenuUIView: View {
         
             VStack{
                 
+               
                     ForEach(sideMenuOptions) { MenuOption in
                         
                         if(MenuOption.name == "Articles") {
@@ -72,7 +73,7 @@ struct SideMenuUIView: View {
                                     
 
                                 }label: {
-                                    SideMenuItem(title: MenuOption.name , iconName: MenuOption.iconName)
+                                    SideMenuItem(name: MenuOption.name , iconName: MenuOption.iconName)
                                 }
                                 .foregroundColor(Color("MainColor"))
                                 .font(.title2)
@@ -86,7 +87,7 @@ struct SideMenuUIView: View {
                                     
 
                                 }label: {
-                                    SideMenuItem(title: MenuOption.name , iconName: MenuOption.iconName)
+                                    SideMenuItem(name: MenuOption.name , iconName: MenuOption.iconName)
                                 }
                                 .foregroundColor(Color("MainColor"))
                                 .font(.title2)

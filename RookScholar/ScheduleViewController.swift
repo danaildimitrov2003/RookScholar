@@ -30,8 +30,8 @@ class ScheduleViewController: UIViewController{
     
     private func setupUI(){
         sideMenuProvider = SideMenuProvider(presenter: self.navigationController)
-        
         navigationItem.rightBarButtonItem = sideMenuProvider.burgerButton()
+        sideMenuProvider.delegate = self
 
         
         self.navigationItem.title = "RookScholar"
@@ -49,5 +49,17 @@ class ScheduleViewController: UIViewController{
     }
     
 
+}
+
+extension ScheduleViewController: SideMenuDelegate{
+    func sideMenuWidth() -> CGFloat {
+        185
+    }
+    
+    func isRight() -> Bool {
+        true
+    }
+    
+    
 }
 

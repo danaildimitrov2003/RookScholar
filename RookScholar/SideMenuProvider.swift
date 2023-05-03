@@ -8,10 +8,28 @@
 import UIKit
 import SwiftUI
 
+protocol SideMenuDelegate: AnyObject {
+    func sideMenuWidth() -> CGFloat
+    func isRight() -> Bool
+    //func locations() -> [sideMenuLocation]
+    
+}
+
+struct sideMenuLocation{
+    var name:String
+    var iconName:String
+    var viewController:ViewController
+    
+}
+
 class SideMenuProvider {
+    
+    
     let normalImage = UIImage(systemName: "line.3.horizontal")
     let pressedImage = UIImage(systemName: "xmark")
-    
+    var width : CGFloat = 185.5
+    var isRight = true
+    weak var delegate : SideMenuDelegate?
     
     
     var sideMenuHostingController : UIHostingController <SideMenuUIView>
@@ -21,16 +39,9 @@ class SideMenuProvider {
     
     
     init(presenter: UINavigationController? = nil) {
-        
         self.sideMenuHostingController = UIHostingController <SideMenuUIView>(rootView: SideMenuUIView())
         self.presenter = presenter
-        
         let screenSize = UIScreen.main.bounds.size
-        sideMenuHostingController.view.frame = CGRect(x: 0, y: 0, width: Constants.sideMenuWidth, height: screenSize.height)
-        
-        sideMenuHostingController.modalPresentationStyle = .overFullScreen
-        sideMenuHostingController.view.backgroundColor = UIColor.clear
-        
         
     }
     
@@ -43,21 +54,33 @@ class SideMenuProvider {
     
     @objc func didTabMenuButton(){
 
+        
+        
+        
         if let topViewController = presenter?.topViewController {
             if (isSideMenuSetUped == false){
+                
+                width = delegate?.sideMenuWidth() ?? 185
+                isRight = delegate?.isRight() ?? true
+                
                 topViewController.view.addSubview(sideMenuHostingController.view)
                 sideMenuHostingController.view.translatesAutoresizingMaskIntoConstraints = false
                 topViewController.addChild(sideMenuHostingController)
                 sideMenuHostingController.view.isHidden = true
                 sideMenuHostingController.didMove(toParent: topViewController)
                 sideMenuHostingController.view.backgroundColor = UIColor(named: "SideMenuColor")
-                sideMenuHostingController.view.frame = CGRect(x: topViewController.view.frame.width + Constants.sideMenuWidth, y: topViewController.view.bounds.maxY, width: Constants.sideMenuWidth, height: topViewController.view.bounds.height)
-
+                if(isRight){
+                    sideMenuHostingController.view.frame = CGRect(x: topViewController.view.frame.width + width, y: topViewController.view.bounds.maxY, width: width, height: topViewController.view.bounds.height)
+                    NSLayoutConstraint.activate([sideMenuHostingController.view.trailingAnchor.constraint(equalTo: topViewController.view.safeAreaLayoutGuide.trailingAnchor, constant: width)])
+                }else{
+                    sideMenuHostingController.view.frame = CGRect(x: 0 - width, y: topViewController.view.bounds.maxY, width: width, height: topViewController.view.bounds.height)
+                    NSLayoutConstraint.activate([sideMenuHostingController.view.leadingAnchor.constraint(equalTo: topViewController.view.safeAreaLayoutGuide.leadingAnchor),sideMenuHostingController.view.trailingAnchor.constraint(equalTo: topViewController.view.safeAreaLayoutGuide.leadingAnchor, constant: width)])
+                }
+                
+                
                 NSLayoutConstraint.activate([
-                                             
                     sideMenuHostingController.view.topAnchor.constraint(equalTo: topViewController.view.safeAreaLayoutGuide.topAnchor),
-                    sideMenuHostingController.view.trailingAnchor.constraint(equalTo: topViewController.view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.sideMenuWidth),
-                    sideMenuHostingController.view.widthAnchor.constraint(equalToConstant: Constants.sideMenuWidth),
+                    sideMenuHostingController.view.widthAnchor.constraint(equalToConstant: width),
                     sideMenuHostingController.view.heightAnchor.constraint(equalTo: topViewController.view.safeAreaLayoutGuide.heightAnchor),
                     sideMenuHostingController.view.bottomAnchor.constraint(equalTo: topViewController.view.safeAreaLayoutGuide.bottomAnchor)])
                 isSideMenuSetUped = true
@@ -67,7 +90,12 @@ class SideMenuProvider {
                 if(sideMenuHostingController.view.isHidden){
                     topViewController.navigationItem.rightBarButtonItem?.image = pressedImage
                     UIView.animate(withDuration: 0.5) {
-                        self.sideMenuHostingController.view.frame.origin.x = topViewController.view.frame.width - Constants.sideMenuWidth
+                        if(self.isRight){
+                            self.sideMenuHostingController.view.frame.origin.x = topViewController.view.frame.width - self.width
+                        }else{
+                            self.sideMenuHostingController.view.frame.origin.x = 0
+                        }
+                        
                     }
                     constraints.append(sideMenuHostingController.view.trailingAnchor.constraint(
                         equalTo: topViewController.view.safeAreaLayoutGuide.trailingAnchor))
@@ -75,15 +103,16 @@ class SideMenuProvider {
                 }else{
                     topViewController.navigationItem.rightBarButtonItem?.image = normalImage
                     UIView.animate(withDuration: 0.5) {
-                        self.sideMenuHostingController.view.frame.origin.x = topViewController.view.frame.width + Constants.sideMenuWidth
+                        if(self.isRight){
+                            self.sideMenuHostingController.view.frame.origin.x = topViewController.view.frame.width + self.width
+                        }else{
+                            self.sideMenuHostingController.view.frame.origin.x = 0 - self.width
+                        }
+                        
                     }
                 }
                 
                 sideMenuHostingController.view.isHidden = !sideMenuHostingController.view.isHidden
-            
-            
-            
-            
         }
     }
 

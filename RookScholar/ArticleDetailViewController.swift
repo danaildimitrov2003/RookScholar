@@ -75,8 +75,9 @@ class ArticleDetailViewController: UIViewController{
     
     private func addLabels() {
         sideMenuProvider = SideMenuProvider(presenter: self.navigationController)
-        
         navigationItem.rightBarButtonItem = sideMenuProvider.burgerButton()
+        sideMenuProvider.delegate = self
+        
         
         var constraints = [NSLayoutConstraint]()
         view.addSubview(scrollView)
@@ -151,5 +152,15 @@ class ArticleDetailViewController: UIViewController{
    
 }
 
-
+extension ArticleDetailViewController : SideMenuDelegate{
+    func sideMenuWidth() -> CGFloat {
+         185
+    }
+    
+    func isRight() -> Bool {
+         true
+    }
+    
+    
+}
 

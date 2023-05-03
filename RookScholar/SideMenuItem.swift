@@ -13,14 +13,14 @@ import SwiftUI
 
 struct SideMenuItem: View {
     
-    var title : String
+    var name : String
     var iconName : String
     
     
     var body: some View {
         
         HStack{
-            Label(title, systemImage: iconName)
+            Label(name, systemImage: iconName)
             .foregroundColor(Color("MainColor"))
             .font(.title2)
         }
@@ -30,7 +30,7 @@ struct SideMenuItem: View {
 
 struct SideMenuItem_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuItem(title: "test", iconName: "bolt.fill")
+        SideMenuItem(name: "test", iconName: "bolt.fill")
         
     }
 }

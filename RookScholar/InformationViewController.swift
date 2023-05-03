@@ -136,9 +136,8 @@ class InformationViewController: UIViewController{
     
     private func setupUI(){
         sideMenuProvider = SideMenuProvider(presenter: self.navigationController)
-        
         navigationItem.rightBarButtonItem = sideMenuProvider.burgerButton()
-        
+        sideMenuProvider.delegate = self
         
         
         pastButton.addTarget(self, action:#selector(self.pastClicked), for: .touchUpInside)
@@ -288,7 +287,16 @@ class InformationViewController: UIViewController{
     
 }
 
-
+extension InformationViewController: SideMenuDelegate{
+    func sideMenuWidth() -> CGFloat {
+         185
+    }
+    
+    func isRight() -> Bool {
+        true
+    }
+ 
+}
 
 
 
