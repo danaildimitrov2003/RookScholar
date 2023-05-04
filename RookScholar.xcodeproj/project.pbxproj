@@ -22,6 +22,7 @@
 		2256DF1529EFF7B300D7E3FC /* SideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2256DF1429EFF7B300D7E3FC /* SideMenuItem.swift */; };
 		2256DF1D29F7F39200D7E3FC /* SideMenuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2256DF1C29F7F39200D7E3FC /* SideMenuProvider.swift */; };
 		2256DF2329FC0CC300D7E3FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2256DF2229FC0CC300D7E3FC /* Constants.swift */; };
+		2256DF252A03F0B900D7E3FC /* UINavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2256DF242A03F0B900D7E3FC /* UINavigationViewController.swift */; };
 		2289A8DA29DC6F8D001D770A /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289A8D929DC6F8D001D770A /* UILabelExtensions.swift */; };
 		2289A8DC29DC7000001D770A /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289A8DB29DC7000001D770A /* UIStackViewExtensions.swift */; };
 		2289A8DE29DC7580001D770A /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289A8DD29DC7580001D770A /* UITextViewExtensions.swift */; };
@@ -47,6 +48,7 @@
 		2256DF1429EFF7B300D7E3FC /* SideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItem.swift; sourceTree = "<group>"; };
 		2256DF1C29F7F39200D7E3FC /* SideMenuProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuProvider.swift; sourceTree = "<group>"; };
 		2256DF2229FC0CC300D7E3FC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2256DF242A03F0B900D7E3FC /* UINavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationViewController.swift; sourceTree = "<group>"; };
 		2289A8D929DC6F8D001D770A /* UILabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 		2289A8DB29DC7000001D770A /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
 		2289A8DD29DC7580001D770A /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				2289A8D829DC6F34001D770A /* Extensions */,
 				22326CCD29C897BB001C5DD9 /* ArticleTableViewController.swift */,
+				2256DF242A03F0B900D7E3FC /* UINavigationViewController.swift */,
 				222B0E8229AC99E600905615 /* AppDelegate.swift */,
 				222B0E8429AC99E600905615 /* SceneDelegate.swift */,
 				222B0E8629AC99E600905615 /* ViewController.swift */,
@@ -198,6 +201,7 @@
 				2256DF1D29F7F39200D7E3FC /* SideMenuProvider.swift in Sources */,
 				22F1C0B629AE3F6F00213ED1 /* ArticleDetailViewController.swift in Sources */,
 				2289A8DE29DC7580001D770A /* UITextViewExtensions.swift in Sources */,
+				2256DF252A03F0B900D7E3FC /* UINavigationViewController.swift in Sources */,
 				222B0E8329AC99E600905615 /* AppDelegate.swift in Sources */,
 				2289A8DA29DC6F8D001D770A /* UILabelExtensions.swift in Sources */,
 				222B0E9B29ACF37100905615 /* ArticleTableViewCell.swift in Sources */,

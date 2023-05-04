@@ -9,9 +9,10 @@ import SwiftUI
 
 
 
+
 struct ArticleTableUiView: UIViewControllerRepresentable {
     
-    typealias UIViewControllerType = ArticleTableViewController
+    typealias UIViewControllerType = UINavigationViewController
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
         let vc = UIViewControllerType()
@@ -52,32 +53,27 @@ struct SideMenuUIView: View {
     }
     
     @State var selection: Int? = nil
-
+    
     
     var sideMenuOptions: [MenuOption] = [
         MenuOption(id: 0,name: "Articles", iconName: "list.bullet.rectangle.portrait.fill"),
         MenuOption(id: 1,name: "Info", iconName: "info.square.fill")]
     
+    var navController = UINavigationViewController()
     var body: some View{
         
             VStack{
                 
-               
                     ForEach(sideMenuOptions) { MenuOption in
                         
                         if(MenuOption.name == "Articles") {
-                            NavigationLink(destination: ArticleTableUiView(), tag: 1, selection: $selection) {
-                                Button{
-                                    self.selection = 1
-                                    print(MenuOption.name)
-                                    
-
-                                }label: {
-                                    SideMenuItem(name: MenuOption.name , iconName: MenuOption.iconName)
-                                }
+                                SideMenuItem(name: MenuOption.name , iconName: MenuOption.iconName)
                                 .foregroundColor(Color("MainColor"))
                                 .font(.title2)
-                            }
+                                .onTapGesture {
+                                    navController.menuItemsSelected()
+                                }
+                            
                         }else{
 
                             NavigationLink(destination: InformationUiView(), tag: 2, selection: $selection) {
