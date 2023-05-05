@@ -95,14 +95,13 @@ extension ArticleTableViewController: UITableViewDelegate{
     
 }
 extension ArticleTableViewController:SideMenuDelegate{
-    func isRight() -> Bool {
-        true
+    func sideMenuPosition() -> sideMenuPosition {
+        .right
     }
     
-    func sideMenuWidth() -> CGFloat {
-        185.0
+    func sideMenuWidth() -> sideMenuWidth {
+        .small
     }
-    
     
 }
 

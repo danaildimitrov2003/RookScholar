@@ -12,7 +12,7 @@ import SwiftUI
 
 struct ArticleTableUiView: UIViewControllerRepresentable {
     
-    typealias UIViewControllerType = UINavigationViewController
+    typealias UIViewControllerType = ArticleTableViewController
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
         let vc = UIViewControllerType()
@@ -67,21 +67,17 @@ struct SideMenuUIView: View {
                     ForEach(sideMenuOptions) { MenuOption in
                         
                         if(MenuOption.name == "Articles") {
-                                SideMenuItem(name: MenuOption.name , iconName: MenuOption.iconName)
-                                .foregroundColor(Color("MainColor"))
-                                .font(.title2)
-                                .onTapGesture {
-                                    navController.menuItemsSelected()
+                            NavigationLink(destination: ArticleTableUiView(), tag: 1, selection: $selection) {
+                                Button {
+                                    self.selection = 1
+                                    }label: {
+                                        SideMenuItem(name: MenuOption.name , iconName: MenuOption.iconName)
+                                    }
                                 }
-                            
                         }else{
-
                             NavigationLink(destination: InformationUiView(), tag: 2, selection: $selection) {
                                 Button {
                                     self.selection = 2
-                                    print(MenuOption.name)
-                                    
-
                                 }label: {
                                     SideMenuItem(name: MenuOption.name , iconName: MenuOption.iconName)
                                 }

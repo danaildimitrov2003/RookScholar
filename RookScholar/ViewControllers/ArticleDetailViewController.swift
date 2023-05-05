@@ -153,14 +153,14 @@ class ArticleDetailViewController: UIViewController{
 }
 
 extension ArticleDetailViewController : SideMenuDelegate{
-    func sideMenuWidth() -> CGFloat {
-         185
+    
+    func sideMenuPosition() -> sideMenuPosition {
+        .right
     }
     
-    func isRight() -> Bool {
-         true
+    func sideMenuWidth() -> sideMenuWidth {
+        .small
     }
-    
     
 }
 

@@ -288,12 +288,12 @@ class InformationViewController: UIViewController{
 }
 
 extension InformationViewController: SideMenuDelegate{
-    func sideMenuWidth() -> CGFloat {
-         185
+    func sideMenuWidth() -> sideMenuWidth {
+        .small
     }
     
-    func isRight() -> Bool {
-        true
+    func sideMenuPosition() -> sideMenuPosition {
+        .right
     }
  
 }
